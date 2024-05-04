@@ -1,9 +1,5 @@
 #!/bin/bash
 
-set -u
-set -e
-
-
 #config aliyun yum repo
 createyumRepoByTemplate()
 {
