@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -u
-set -e
-
 #color output #1:color  #2:content
 colorOutput() 
 {
