@@ -3,7 +3,7 @@
 
 
 ## [Linux基础](./LinuxBasics/)
-###### [1-Linux服务器硬件基础和在Vmware下安装Linux发行版](./LinuxBasics/1-Linux服务器硬件基础和在Vmware下安装Linux发行版.md)
+###### [1.Linux服务器硬件基础和操作系统的发展](./LinuxBasics/1.Linux服务器硬件基础和操作系统的发展.md)
 
 
 
