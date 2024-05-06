@@ -8,6 +8,11 @@
 ###### [3.Linux基础入门和帮助](./LinuxBasics/3.Linux基础入门和帮助.md)
 ###### [4.文件管理和IO重定向](./LinuxBasics/4.文件管理和IO重定向.md)
 ###### [5.用户-组和权限](./LinuxBasics/5.用户-组和权限.md)
+###### [6.vim](./LinuxBasics/6.vim.md)
+###### [7.正则表达式](./LinuxBasics/7.正则表达式.md)
+###### [8.文本三剑客-grep](./LinuxBasics/8.grep.md)
+###### [9.文本三剑客-sed](./LinuxBasics/9.sed.md)
+###### [10.文本三剑客-awk](./LinuxBasics/10.awk.md)
 
 
 ## Linux 脚本
