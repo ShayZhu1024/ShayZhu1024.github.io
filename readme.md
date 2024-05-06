@@ -22,6 +22,7 @@
 
 ###### [5.文本处理相关习题](./Interview/TextExercise.md)
 ###### [6.如何在家目录下默认有xxxx文件](./Interview/如何在家目录下默认有xxxx文件.md)
+###### [7. 文件权限面试题](./Interview/文件权限面试题.md)
 
 
 
