@@ -15,6 +15,11 @@
 ###### [10.文本三剑客-awk](./LinuxBasics/10.awk.md)
 
 
+
+## Linux高级
+
+
+
 ## Linux 脚本
 [RockyLinux初始化和常用服务快速配置脚本](./scripts/)
 
