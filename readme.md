@@ -3,7 +3,7 @@
 
 <img alt="Static Badge" src="https://img.shields.io/badge/Linux-Shell-blue">&nbsp;&nbsp;
 <img alt="Static Badge" src="https://img.shields.io/badge/License-MPL--2.0-yellow">&nbsp;&nbsp;
-<a href="https://hub.docker.com/" style=":hover {text-decoration=none}"><img alt="Static Badge" src="https://img.shields.io/badge/docker-red">&nbsp;&nbsp;</a>
+<a href="https://hub.docker.com/" style="text-decoration=none"><img alt="Static Badge" src="https://img.shields.io/badge/docker-red">&nbsp;&nbsp;</a>
 <a href="https://nginx.org/en/download.html"><img alt="Static Badge" src="https://img.shields.io/badge/nginx-gray">&nbsp;&nbsp;</a>
 <a href="https://www.vim.org/"><img alt="Static Badge" src="https://img.shields.io/badge/vim-purple"></a>
 
