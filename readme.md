@@ -5,7 +5,7 @@
 ## Linux基础
 ###### [1.Linux服务器硬件基础和操作系统的发展](./LinuxBasics/1.Linux服务器硬件基础和操作系统的发展.md)
 ###### [2.VMWare安装Linux](./LinuxBasics/2.VMWare安装Linux.md)
-
+###### [3.Linux基础入门和帮助](./LinuxBasics/3.Linux基础入门和帮助.md)
 
 ## Linux面试题 
 ###### [1.冯诺依曼体系中计算机有哪些组件](./Interview/冯诺依曼体系中计算机有哪些组件.md)
@@ -13,4 +13,4 @@
 
 
 ## Linux 脚本
-  [Rocky Linux 初始化和常用服务快速配置脚本](./scripts/)
+[Rocky Linux 初始化和常用服务快速配置脚本](./scripts/)
