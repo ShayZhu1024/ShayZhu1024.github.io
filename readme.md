@@ -1,9 +1,11 @@
 # TLSAN
 > The Linux System Administration Notes
 
-<img alt="Static Badge" src="https://img.shields.io/badge/Linux-Shell-blue">  
-
-![visitors](https://visitor-badge.glitch.me/badge?page_id=ShayZhu1024.TLSAN&left_color=green&right_color=red)
+<img alt="Static Badge" src="https://img.shields.io/badge/Linux-Shell-blue"> _
+<img alt="Static Badge" src="https://img.shields.io/badge/License-MPL--2.0-yellow">_
+<img alt="Static Badge" src="https://img.shields.io/badge/docker-red">_
+<img alt="Static Badge" src="https://img.shields.io/badge/nginx-gray">_
+<img alt="Static Badge" src="https://img.shields.io/badge/vim-purple">
 
 
 
