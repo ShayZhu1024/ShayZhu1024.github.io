@@ -12,5 +12,5 @@
 ###### [2.Linux哲学思想(法则,原则)是什么?](./Interview/Linux哲学思想(法则,原则)是什么.md)
 
 
-## [Linux脚本](./scripts/)
+## <a href="./scripts/">Linux脚本</a>
   Rocky Linux 初始化和常用服务快速配置脚本
