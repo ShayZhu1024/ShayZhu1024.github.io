@@ -1,6 +1,12 @@
 # TLSAN
 > The Linux System Administration Notes
 
+<img alt="Static Badge" src="https://img.shields.io/badge/Linux-Shell-blue">  
+
+![visitors](https://visitor-badge.glitch.me/badge?page_id=ShayZhu1024.TLSAN&left_color=green&right_color=red)
+
+
+
 
 ## Linux基础
 ###### [1.Linux服务器硬件基础和操作系统的发展](./LinuxBasics/1.Linux服务器硬件基础和操作系统的发展.md)
