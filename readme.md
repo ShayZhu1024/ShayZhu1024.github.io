@@ -9,7 +9,7 @@
 
 
 ## Linux 脚本
-[Rocky Linux 初始化和常用服务快速配置脚本](./scripts/)
+[RockyLinux初始化和常用服务快速配置脚本](./scripts/)
 
 
 ## Linux面试题 
