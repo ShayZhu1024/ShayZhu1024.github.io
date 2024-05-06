@@ -1,12 +1,11 @@
 # TLSAN
 > The Linux System Administration Notes
 
-<img alt="Static Badge" src="https://img.shields.io/badge/Linux-Shell-blue"> _
-<img alt="Static Badge" src="https://img.shields.io/badge/License-MPL--2.0-yellow">_
-<img alt="Static Badge" src="https://img.shields.io/badge/docker-red">_
-<img alt="Static Badge" src="https://img.shields.io/badge/nginx-gray">_
+<img alt="Static Badge" src="https://img.shields.io/badge/Linux-Shell-blue">&nbsp;&nbsp;
+<img alt="Static Badge" src="https://img.shields.io/badge/License-MPL--2.0-yellow">&nbsp;&nbsp;
+<img alt="Static Badge" src="https://img.shields.io/badge/docker-red">&nbsp;&nbsp;
+<img alt="Static Badge" src="https://img.shields.io/badge/nginx-gray">&nbsp;&nbsp;
 <img alt="Static Badge" src="https://img.shields.io/badge/vim-purple">
-
 
 
 
