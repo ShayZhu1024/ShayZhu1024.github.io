@@ -13,6 +13,8 @@
 ###### [8.文本三剑客-grep](./LinuxBasics/8.grep.md)
 ###### [9.文本三剑客-sed](./LinuxBasics/9.sed.md)
 ###### [10.文本三剑客-awk](./LinuxBasics/10.awk.md)
+###### [11.文件查找和打包压缩](./LinuxBasics/11.文件查找和打包压缩.md)
+###### [12.shell脚本编程](./LinuxBasics/12.shell脚本编程.md)
 
 
 
