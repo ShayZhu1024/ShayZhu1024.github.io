@@ -1,12 +1,6 @@
 # TLSAN
 > The Linux System Administration Notes
 
-<style>
-    a {
-        text-decoration=none !important;
-    }
-</style>
-
 <img alt="Static Badge" src="https://img.shields.io/badge/Linux-Shell-blue">&nbsp;&nbsp;
 <img alt="Static Badge" src="https://img.shields.io/badge/License-MPL--2.0-yellow">&nbsp;&nbsp;
 <a href="https://hub.docker.com/"><img alt="Static Badge" src="https://img.shields.io/badge/docker-red">&nbsp;&nbsp;</a>
