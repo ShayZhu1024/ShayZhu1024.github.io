@@ -19,6 +19,8 @@
 ###### [3.提示空间满 No space left on device，但 df 可以看到空间很多，为什么](./Interview/提示空间满Nospaceleftondevice但df可以看到空间很多,为什么.md)
 ###### [4.提示空间快满,使用rm删除了很大的无用文件后,df仍然看到空间不足,为什么?如何解决?](./Interview/提示空间快满,使用rm删除了很大的无用文件后,df仍然看到空间不足,为什么如何解决.md)
 
+###### [5.文本处理相关习题](./Interview/TextExercise.md)
+
 
 
 
