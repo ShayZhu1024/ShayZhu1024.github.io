@@ -6,6 +6,7 @@
 ###### [1.Linux服务器硬件基础和操作系统的发展](./LinuxBasics/1.Linux服务器硬件基础和操作系统的发展.md)
 ###### [2.VMWare安装Linux](./LinuxBasics/2.VMWare安装Linux.md)
 ###### [3.Linux基础入门和帮助](./LinuxBasics/3.Linux基础入门和帮助.md)
+###### [4.文件管理和IO重定向](./LinuxBasics/4.文件管理和IO重定向.md)
 
 
 ## Linux 脚本
