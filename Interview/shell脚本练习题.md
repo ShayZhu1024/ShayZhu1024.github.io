@@ -25,6 +25,22 @@
 
 12、编写脚本 nologin.sh和 login.sh，实现禁止和允许普通用户登录系统
 
+13、让所有用户的PATH环境变量的值多出一个路径，例如：/usr/local/apache/bin
+
+14
+
+```bash
+用户 root 登录时，将命令指示符变成红色，并自动启用如下别名： rm=‘rm -i’
+cdnet=‘cd /etc/sysconfig/network-scripts/’
+editnet=‘vim /etc/sysconfig/network-scripts/ifcfg-eth0’
+editnet=‘vim /etc/sysconfig/network-scripts/ifcfg-eno16777736 或 ifcfg-ens33 ’ (如果系统是
+CentOS7)
+```
+15、任意用户登录系统时，显示红色字体的警示提醒信息“Hi,dangerous！”
+
+16、编写生成脚本基本格式的脚本，包括作者，联系方式，版本，时间，描述等
+
+
 
 
 
