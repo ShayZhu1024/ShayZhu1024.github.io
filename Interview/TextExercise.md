@@ -13,3 +13,39 @@
 ### 5、统计当前连接本机的每个远程主机IP的连接数，并按从大到小排序
 `who | tr -s " " | cut -d " "  -f5|tr -d "()"|sort|uniq -c|tr -s " "|sort -t " " -k2 -nr`
 
+
+### 6.取两个文件相同的行
+	`egrep -f /data/f1.txt  /data/f2.txt`
+	`paste /data/f1.txt /data/f2.txt | sort | uniq -d`
+
+### 7.处理器核心个数
+	`egrep -c processor /proc/cpuinfo`
+	
+### 8.算出所有人的年龄总和
+```bash
+[root]#cat age.txt 
+xiaoming=20
+xiaohong=18
+xiaoqiang=22
+
+cut -d= -f2 ./age.txt | paste -s -d+ | bc
+cut -d"=" -f2 ./age.txt|tr '\n' + | grep -Eo ".*[0-9]"|bc
+
+```
+
+### 9.12-1点日志
+```bash
+/var/log/message
+sed -n  '/^Apr 12 12/,/^Apr 19 13/p' /var/log/messages
+sed -n -e '/^Apr 12 12/p'  -e '/^Apr 12 13/p' /var/log/messages
+sed -n '/^Apr 12 12/p;/^Apr 12 13/p' /var/log/messages
+```
+
+### 10.df找出分区利用率
+```bash
+df | sed -En  '/^\/dev\/.*/s/^.* +([0-9]?[0-9]?)%.*/\1/p' | sort -nr
+df | sed -En  's/^\/dev\/.* +([0-9]+)%.*/\1/p' | sort -nr
+```
+
+
+
