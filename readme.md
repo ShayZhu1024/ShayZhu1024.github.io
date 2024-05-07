@@ -38,14 +38,13 @@
 ###### [2.Linux哲学思想(法则,原则)是什么?](./Interview/Linux哲学思想(法则,原则)是什么.md)
 ###### [3.提示空间满 No space left on device，但 df 可以看到空间很多，为什么](./Interview/提示空间满Nospaceleftondevice但df可以看到空间很多,为什么.md)
 ###### [4.提示空间快满,使用rm删除了很大的无用文件后,df仍然看到空间不足,为什么?如何解决?](./Interview/提示空间快满,使用rm删除了很大的无用文件后,df仍然看到空间不足,为什么如何解决.md)
-
 ###### [5.文本和文件处理相关习题](./Interview/TextAndFileExercise.md)
 ###### [6.如何在家目录下默认有xxxx文件](./Interview/如何在家目录下默认有xxxx文件.md)
 ###### [7. 文件权限面试题](./Interview/文件权限面试题.md)
 ###### [8.软连接和硬链接区别](./Interview/软连接和硬链接区别.md)
 ###### [9.linux文件类型分别是什么](./Interview/Linux文件类型.md)
 ###### [10.用户和文件权限练习](./Interview/用户和文件权限练习.md)
-
+###### [11.shell脚本练习题](./Interview/shell脚本练习题.md)
 
 
 
