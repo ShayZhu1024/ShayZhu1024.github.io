@@ -7,7 +7,8 @@
 4、编写脚本 links.sh，显示正连接本主机的每个远程主机的IPv4地址和连接数，并按连接数从大到小排序
 
 5、 查看指定进程的环境变量
-`cat /proc/$PID/environ`
+
+`cat /proc/$PID/environ`  # PID 是自己定义的变量，不是系统环境变量
 
 
 
