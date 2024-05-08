@@ -22,6 +22,7 @@
 ###### [10.文本三剑客-awk](./LinuxBasics/10.awk.md)
 ###### [11.文件查找和打包压缩](./LinuxBasics/11.文件查找和打包压缩.md)
 ###### [12.shell脚本编程](./LinuxBasics/12.shell脚本编程.md)
+###### [13.磁盘存储和文件系统](./LinuxBasics/13.磁盘存储和文件系统.md)
 
 
 
