@@ -41,7 +41,9 @@ configYum()
     done
 
     # 安装epel
-    yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm
+    yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm &>/dev/null
+
+    printMessage "yum install epel"
 
 
     printMessage "add aliyun yum repo"
