@@ -32,8 +32,8 @@
 
 
 ## Linux 脚本
-[RockyLinux初始化和常用服务快速配置脚本](./scripts/serviceAndSystemReset/)
-[nginx源码编译安装脚本](./scripts/nginx-install/)
+###### [RockyLinux初始化和常用服务快速配置脚本](./scripts/serviceAndSystemReset/)
+###### [nginx源码编译安装脚本](./scripts/nginx-install/)
 
 
 ## Linux面试题 
