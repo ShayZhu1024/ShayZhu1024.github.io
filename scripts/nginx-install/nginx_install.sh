@@ -7,7 +7,7 @@ source ./load_dependencies.sh
 source ./config.sh
 
 TAR=${SRC}/nginx-${VERSION}.tar.gz 
-SRC_CODE=${SRC}nginx-${VERSION}
+SRC_CODE=${SRC}/nginx-${VERSION}
 
 [ -e "$TAR" ] && { rm -rf "$TAR";  }
 
