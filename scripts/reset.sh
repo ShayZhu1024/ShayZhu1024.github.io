@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#config aliyun yum repo
+#config aliyun yum repo remote
 createyumRepoByTemplate()
 {
     if (($# != 3)); then
@@ -14,6 +14,25 @@ cat <<EOF
 [$id]
 name=$name
 baseurl=https://mirrors.aliyun.com/rockylinux/\$releasever/$repoName/\$basearch/os/
+gpgcheck=0
+EOF
+
+}
+
+#config aliyun yum repo local
+createLocalyumRepoByTemplate()
+{
+    if (($# != 3)); then
+        return 1
+    fi
+
+    local id="$1"
+    local name="$2"
+    local repoName="$3"
+cat <<EOF
+[$id]
+name=$name
+baseurl=http://10.0.0.4/rockylinux/8/$repoName
 gpgcheck=0
 EOF
 
@@ -34,16 +53,16 @@ configYum()
     printMessage "backup system yum repo"
 
     #add aliyun yum repo
-    local repoNameList="BaseOS  AppStream  extras PowerTools"
+    local repoNameList="BaseOS  AppStream  extras epel"
     for repoName in  $repoNameList; do
-        createyumRepoByTemplate "$repoName" "$repoName" "$repoName"   >> "$aliyumRepoDir"
+        createLocalyumRepoByTemplate "$repoName" "$repoName" "$repoName"   >> "$aliyumRepoDir"
         echo >> "$aliyumRepoDir"
     done
 
-    # 安装epel
-    yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm &>/dev/null
+    # 安装epel, local 不需要，remote 打开
+    #yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm &>/dev/null
 
-    printMessage "yum install epel"
+    #printMessage "yum install epel"
 
 
     printMessage "add aliyun yum repo"
