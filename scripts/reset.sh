@@ -34,7 +34,7 @@ configYum()
     printMessage "backup system yum repo"
 
     #add aliyun yum repo
-    local repoNameList="BaseOS Devel AppStream HighAvailability NFV PowerTools RT ResilientStorage devel extras nfv plus"
+    local repoNameList="BaseOS AppStream extras "
     for repoName in  $repoNameList; do
         createyumRepoByTemplate "$repoName" "$repoName" "$repoName"   >> "$aliyumRepoDir"
         echo >> "$aliyumRepoDir"
