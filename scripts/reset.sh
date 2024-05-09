@@ -34,11 +34,15 @@ configYum()
     printMessage "backup system yum repo"
 
     #add aliyun yum repo
-    local repoNameList="BaseOS AppStream extras "
+    local repoNameList="BaseOs  AppStream  extras PowerTools"
     for repoName in  $repoNameList; do
         createyumRepoByTemplate "$repoName" "$repoName" "$repoName"   >> "$aliyumRepoDir"
         echo >> "$aliyumRepoDir"
     done
+
+    # 安装epel
+    yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm
+
 
     printMessage "add aliyun yum repo"
 
