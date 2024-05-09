@@ -32,7 +32,7 @@ createLocalyumRepoByTemplate()
 cat <<EOF
 [$id]
 name=$name
-baseurl=http://10.0.0.4/rockylinux/8/$repoName
+baseurl=http://10.0.0.4/linux/rockylinux/8/$repoName
 gpgcheck=0
 EOF
 
