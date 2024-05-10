@@ -8,10 +8,10 @@ set -e
 source ./detect_os_version.sh
 
 if [[ $ID =~ rhel|centos|rocky  ]]; then
-    yum install -y sl gcc gcc-c++  pcre-devel openssl-devel pcre-devel  
+    yum install -y gcc gcc-c++  pcre-devel openssl-devel pcre-devel  
 fi
 
 if [[ $ID =~ ubuntu ]]; then
-    apt install -y sl  gcc g++  libpcre3-dev  libssl-dev  zlib1g-dev  make 
+    apt install -y gcc g++  libpcre3-dev  libssl-dev  zlib1g-dev  make 
 fi
 
