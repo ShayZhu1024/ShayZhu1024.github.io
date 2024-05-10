@@ -21,4 +21,4 @@ cd "$SRC_CODE"
 
 ./configure  --prefix="$DEST"  $ARG  && make -j `egrep -c processor /proc/cpuinfo` && make install  
 
-echo "make nginx and make install nginx successed !!!"
+(( ${?} == 0)) && echo "make nginx and make install nginx successed !!!"
