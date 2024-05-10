@@ -12,6 +12,6 @@ if [[ $ID =~ rhel|centos|rocky  ]]; then
 fi
 
 if [[ $ID =~ ubuntu ]]; then
-    apt install -y sl 
+    apt install -y sl  gcc g++  libpcre3-dev  libssl-dev  zlib1g-dev  make 
 fi
 
