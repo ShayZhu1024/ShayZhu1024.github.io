@@ -8,7 +8,7 @@ set -e
 source ./detect_os_version.sh
 
 if [[ $ID =~ rhel|centos|rocky  ]]; then
-    yum install -y gcc gcc-c++  pcre-devel openssl-devel pcre-devel  wget 
+    yum install -y gcc gcc-c++  pcre-devel openssl-devel pcre-devel  wget make
 fi
 
 if [[ $ID =~ ubuntu ]]; then
