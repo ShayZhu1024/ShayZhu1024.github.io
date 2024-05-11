@@ -25,6 +25,7 @@
 ###### [13.磁盘存储和文件系统](./LinuxBasics/13.磁盘存储和文件系统.md)
 ###### [14.软件管理](./LinuxBasics/14.软件管理.md)
 ###### [15.网络基础](./LinuxBasics/15.网络基础.md)
+###### [16.Rocky和Ubuntu网络配置(./LinuxBasics/16.Rocky和Ubuntu网络配置.md)
 
 
 
