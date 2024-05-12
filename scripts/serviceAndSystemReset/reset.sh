@@ -1,5 +1,8 @@
 #!/bin/bash
 
+source  ./common.sh
+
+
 #config aliyun yum repo remote
 createyumRepoByTemplate()
 {
@@ -141,7 +144,7 @@ ONBOOT=yes
 IPADDR="$1"
 NETMASK=255.255.255.0
 GATEWAY=10.0.0.2
-DNS1=8.8.8.8
+DNS1=10.0.0.2
 DNS2=8.8.4.4
 EOF
     systemctl restart NetworkManager
@@ -170,9 +173,12 @@ resetMain() {
     installCommonApp
     configNTP
     autoMountCD
-    configNetwork "10.0.0.3"
+    configNetwork "$1"
     printMessage "all reset"
     echo "The system will reboot in 10s"
+    hostnamectl set-hostname rocky8-"$2"
     sleep 10
     reboot
 }
+
+resetMain "$1" "$2"
