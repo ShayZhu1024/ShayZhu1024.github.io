@@ -163,7 +163,7 @@ config_rocky_mail()
     print_message "postfix service enable"
 }
 
-install_common_app() 
+rocky_install_common_app() 
 {
     yum install -y  bash-completion psmisc lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof \
     &>/dev/null
@@ -212,6 +212,80 @@ EOF
 #############rockyLinux config end##################
 
 
+
+
+
+#############ubuntuLinux config begin###############
+config_apt_source()
+{
+    if [ -e /etc/apt/sources.list ]; then
+        mv /etc/apt/sources.list  /etc/apt/sources.list.bak
+    fi
+
+cat > /etc/apt/sources.list.bak <<EOF
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+EOF
+
+apt update
+
+print_message "apt source update"
+
+}
+
+
+config_ubuntu_vim() 
+{
+    apt install vim -y &>/dev/null
+    print_message "vim installed"
+    if [ -e /etc/vim/vimrc ]; then
+        \mv --backup=numbered  /etc/vim/vimrc    /etc/vim/vimrc.bak
+    fi
+    cat ./vimrc.txt >> /etc/vim/vimrc
+    print_message "vim config"
+}
+
+ubuntu_install_common_app() 
+{
+    apt purge ufw lxd lxd-client lxcfs liblxc-common &>/dev/null
+    apt install iproute2 ntpdate tcpdump telnet traceroute nfs-kernel-server \
+    nfs-common lrzsz tree openssl libssl-dev libpcre3 libpcre3-dev zlib1g-dev \
+    gcc openssh-server iotop unzip zip  bash-completion   -y &>/dev/null
+
+    print_message "commonApp installed"
+
+}
+
+ubuntu_config_network()
+{
+    sed -ri '/^GRUB_CMDLINE_LINUX=/s#"$# net.ifnames=0"#' /etc/default/grub
+    grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
+
+    mkdir -p /etc/netplan/backup
+    \mv /etc/netplan/*.yaml  /etc/netplan/backup
+    \mv /etc/netplan/*.yml  /etc/netplan/backup
+cat > /etc/netplan/eth0.yaml <<EOF
+network: 
+  version: 2 
+  renderer: networkd
+  ethernets: 
+    eth0: 
+      addresses: 
+        - $HOST_IP/24
+      gateway4: 10.0.0.2
+      nameservers: 
+        search: 
+          - baidu.com
+        addresses: 
+          - 8.8.4.4
+          - 10.0.0.2
+EOF
+}
+
+#############ubuntu config end######################
+
 reset_main() 
 {
     detect_os_version
@@ -221,15 +295,19 @@ reset_main()
         config_yum
         config_rocky_vim
         config_rocky_mail
-        install_common_app
+        rocky_install_common_app
         config_NTP
         auto_mount_CD
         config_rocky_network
         hostnamectl set-hostname "$ROCKY_HOSTNAME"
         print_message "set-hostname"
     elif [[ $ID =~ ubuntu ]]; then
-        echo "ubuntu"
+        config_apt_source
+        config_ubuntu_vim
+        ubuntu_install_common_app
+        ubuntu_config_network
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
+        sed -ri "/^127.0.1.1/s#^\$#127.0.0.1 $UBUNTU_HOSTNAME#"
         print_message "set-hostname"
     fi
     echo "reboot....."
