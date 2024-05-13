@@ -228,6 +228,7 @@ reset_main()
         echo "ubuntu"
     fi
     hostnamectl set-hostname "$HOSTNAME"
+    print_message "set-hostname"
     echo "reboot....."
     reboot
 }
