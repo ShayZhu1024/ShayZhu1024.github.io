@@ -3,7 +3,8 @@
 
 LOCAL_REPO=1
 LOCAL_REPO_IP=10.0.0.4
-HOST_IP=10.0.0.3
+HOST_IP="10.0.0.3"
+HOSTNAME=rocky8-$(echo $HOST_IP | awk -F. '{print $4}')
 
 
 
@@ -226,6 +227,7 @@ reset_main()
     elif [[ $ID =~ ubuntu ]]; then
         echo "ubuntu"
     fi
+    hostnamectl set-hostname "$HOSTNAME"
     echo "reboot....."
     reboot
 }
