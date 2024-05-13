@@ -226,7 +226,8 @@ reset_main()
     elif [[ $ID =~ ubuntu ]]; then
         echo "ubuntu"
     fi
-
+    echo "reboot....."
+    reboot
 }
 
 reset_main
