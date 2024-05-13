@@ -54,6 +54,7 @@
 ###### [13.文件系统面试题和练习题](./Interview/文件系统面试题.md)
 ###### [14.软件管理练习题](./Interview/软件管理练习题.md)
 ###### [15.网络基础](./Interview/网路基础.md)
+###### [16.Rocky和Ubuntu网络配置](./Interview/Rocky和Ubuntu网络配置.md)
 
 
 
