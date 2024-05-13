@@ -4,7 +4,8 @@
 LOCAL_REPO=1
 LOCAL_REPO_IP=10.0.0.4
 HOST_IP="10.0.0.3"
-HOSTNAME=rocky8-$(echo $HOST_IP | awk -F. '{print $4}')
+ROCKY_HOSTNAME=rocky8-$(echo $HOST_IP | awk -F. '{print $4}')
+UBUNTU_HOSTNAME=ubuntu20-$(echo $HOST_IP | awk -F. '{print $4}')
 
 
 
@@ -224,11 +225,13 @@ reset_main()
         config_NTP
         auto_mount_CD
         config_rocky_network
+        hostnamectl set-hostname "$ROCKY_HOSTNAME"
+        print_message "set-hostname"
     elif [[ $ID =~ ubuntu ]]; then
         echo "ubuntu"
+        hostnamectl set-hostname "$UBUNTU_HOSTNAME"
+        print_message "set-hostname"
     fi
-    hostnamectl set-hostname "$HOSTNAME"
-    print_message "set-hostname"
     echo "reboot....."
     reboot
 }
