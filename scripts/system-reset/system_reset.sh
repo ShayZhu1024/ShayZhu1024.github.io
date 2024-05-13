@@ -53,6 +53,9 @@ print_message() {
     fi
 }
 
+
+#############rockyLinux config begin##################
+
 disable_selinux()
 {
     sed -ri  '/^SELINUX=/s/enforcing/disabled/' /etc/selinux/config
@@ -203,6 +206,8 @@ DNS2=8.8.4.4
 EOF
     print_message "modify network interface"
 }
+
+#############rockyLinux config end##################
 
 
 reset_main() 
