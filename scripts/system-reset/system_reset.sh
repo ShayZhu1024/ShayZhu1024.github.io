@@ -3,6 +3,7 @@
 
 LOCAL_REPO=1
 LOCAL_REPO_IP=10.0.0.4
+HOST_IP=10.0.0.3
 
 
 
@@ -138,6 +139,71 @@ config_yum()
     print_message "add yum repo"
 }
 
+config_rocky_vim() 
+{
+    yum install vim -y &>/dev/null
+    print_message "vim installed"
+    if [ -e /etc/vimrc ]; then
+        \mv --backup=numbered  /etc/vimrc    /etc/vimrc.bak
+    fi
+    cat ./vimrc.txt >> /etc/vimrc
+    print_message "vim config"
+}
+
+config_rocky_mail() 
+{
+    yum -y install postfix mailx &>/dev/null
+    print_message "install postfix mailx"
+    systemctl enable --now postfix &>/dev/null
+    print_message "postfix service enable"
+}
+
+install_common_app() 
+{
+    yum install -y  bash-completion psmisc lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof \
+    &>/dev/null
+    print_message "commonApp installed"
+
+}
+
+
+config_NTP() 
+{
+    yum install chrony -y &>/dev/null
+    timedatectl set-ntp true &>/dev/null
+    print_message "configNTP"
+}
+
+auto_mount_CD() 
+{
+    yum -y install autofs &>/dev/null
+    systemctl enable --now autofs &>/dev/null
+    print_message "autoMountCD"
+}
+
+
+config_rocky_network() 
+{
+    #modify network interface device name
+    sed -i '/^GRUB_CMDLINE_LINUX=/s#"$# net.ifnames=0"#' /etc/default/grub
+    grub2-mkconfig -o /etc/grub2.cfg &>/dev/null
+    mkdir -p /etc/sysconfig/network-scripts/backup
+    mv /etc/sysconfig/network-scripts/ifcfg*  /etc/sysconfig/network-scripts/backup
+    cat > /etc/sysconfig/network-scripts/ifcfg-eth0 <<EOF
+BOOTPROTO=none
+NAME=eth0
+DEVICE=eth0
+ONBOOT=yes
+
+IPADDR="$HOST_IP"
+NETMASK=255.255.255.0
+GATEWAY=10.0.0.2
+DNS1=10.0.0.2
+DNS2=8.8.4.4
+EOF
+    print_message "modify network interface"
+}
+
 
 reset_main() 
 {
@@ -146,12 +212,17 @@ reset_main()
         disable_selinux
         disable_firewall
         config_yum
+        config_rocky_vim
+        config_rocky_mail
+        install_common_app
+        config_NTP
+        auto_mount_CD
+        config_rocky_network
     elif [[ $ID =~ ubuntu ]]; then
         echo "ubuntu"
     fi
 
 }
-
 
 reset_main
 
