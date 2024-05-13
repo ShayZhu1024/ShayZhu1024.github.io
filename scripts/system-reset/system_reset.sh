@@ -222,11 +222,15 @@ config_apt_source()
         mv /etc/apt/sources.list  /etc/apt/sources.list.bak
     fi
 
-cat > /etc/apt/sources.list.bak <<EOF
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
-deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted universe multiverse
+cat > /etc/apt/sources.list <<EOF
+deb https://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
+deb https://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb-src https://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
 EOF
 
 apt update
@@ -238,7 +242,7 @@ print_message "apt source update"
 
 config_ubuntu_vim() 
 {
-    apt install vim -y &>/dev/null
+    apt install vim -y
     print_message "vim installed"
     if [ -e /etc/vim/vimrc ]; then
         \mv --backup=numbered  /etc/vim/vimrc    /etc/vim/vimrc.bak
@@ -249,10 +253,8 @@ config_ubuntu_vim()
 
 ubuntu_install_common_app() 
 {
-    apt purge ufw lxd lxd-client lxcfs liblxc-common &>/dev/null
-    apt install iproute2 ntpdate tcpdump telnet traceroute nfs-kernel-server \
-    nfs-common lrzsz tree openssl libssl-dev libpcre3 libpcre3-dev zlib1g-dev \
-    gcc openssh-server iotop unzip zip  bash-completion   -y &>/dev/null
+    apt purge ufw lxd lxd-client lxcfs liblxc-common  -y
+    apt install bash-completion   -y
 
     print_message "commonApp installed"
 
@@ -261,7 +263,7 @@ ubuntu_install_common_app()
 ubuntu_config_network()
 {
     sed -ri '/^GRUB_CMDLINE_LINUX=/s#"$# net.ifnames=0"#' /etc/default/grub
-    grub-mkconfig -o /boot/grub/grub.cfg &>/dev/null
+    grub-mkconfig -o /boot/grub/grub.cfg
 
     mkdir -p /etc/netplan/backup
     \mv /etc/netplan/*.yaml  /etc/netplan/backup
@@ -282,6 +284,14 @@ network:
           - 8.8.4.4
           - 10.0.0.2
 EOF
+netplan apply
+
+}
+
+ubuntu_config_timezone() 
+{
+    timedatectl set-timezone Asia/Shanghai
+    print_message "set-timezone"
 }
 
 #############ubuntu config end######################
@@ -306,9 +316,10 @@ reset_main()
         config_ubuntu_vim
         ubuntu_install_common_app
         ubuntu_config_network
+        ubuntu_config_timezone
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
-        sed -ri "/^127.0.1.1/s#^\$#127.0.0.1 $UBUNTU_HOSTNAME#"
         print_message "set-hostname"
+        sed -ri "/^127.0.1.1/s/^.*$/127.0.0.1 ${UBUNTU_HOSTNAME}/" /etc/hosts
     fi
     echo "reboot....."
     reboot
