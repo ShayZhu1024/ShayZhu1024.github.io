@@ -254,7 +254,7 @@ config_ubuntu_vim()
 ubuntu_install_common_app() 
 {
     apt purge ufw lxd lxd-client lxcfs liblxc-common  -y
-    apt install bash-completion  net-tools apt-file -y
+    apt install bash-completion  net-tools  -y
 
     print_message "commonApp installed"
 
