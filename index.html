@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>linuxcache</title>
+    <link rel="icon" href="favicon.ico" type="image/png">
+    <link rel="stylesheet" href="custom.css">
+    <link rel="icon" type="image/png" href="./images/favicon.png">
+
+</head>
+<body>
+    <!-- 这里可以添加你的Markdown内容的HTML版本，或者使用JavaScript动态加载Markdown内容 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      fetch('README.md')
+        .then(response => response.text())
+        .then(text => {
+          document.body.innerHTML = marked(text);
+        });
+    </script>
+</body>
+</html>

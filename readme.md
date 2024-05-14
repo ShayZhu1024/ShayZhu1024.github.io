@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="custom.css">
-<link rel="icon" type="image/png" href="./images/favicon.png">
-
-
 # TLSAN
 > The Linux System Administration Notes
 
