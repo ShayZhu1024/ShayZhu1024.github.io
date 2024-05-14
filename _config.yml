@@ -2,5 +2,5 @@ title: linuxcache
 defaults:
   - scope:
       path: "" # applies to all files in the project
-    values:
+  - values:
       layout: null # 使用 null 布局，去除默认的 title
