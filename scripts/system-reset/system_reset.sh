@@ -165,7 +165,7 @@ config_rocky_mail()
 
 rocky_install_common_app() 
 {
-    yum install -y  bash-completion psmisc lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof \
+    yum install -y  bash-completion psmisc net-tools lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof \
     &>/dev/null
     print_message "commonApp installed"
 
@@ -254,7 +254,7 @@ config_ubuntu_vim()
 ubuntu_install_common_app() 
 {
     apt purge ufw lxd lxd-client lxcfs liblxc-common  -y
-    apt install bash-completion   -y
+    apt install bash-completion  net-tools apt-file -y
 
     print_message "commonApp installed"
 
