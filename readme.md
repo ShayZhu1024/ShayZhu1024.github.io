@@ -28,7 +28,7 @@
 ###### [14.软件管理](./LinuxBasics/14.软件管理.md)
 ###### [15.网络基础](./LinuxBasics/15.网络基础.md)
 ###### [16.Rocky和Ubuntu网络配置](./LinuxBasics/16.Rocky和Ubuntu网络配置.md)
-###### [16.进程和计划任务](./LinuxBasics/16.进程和计划任务.md)
+###### [17.进程和计划任务](./LinuxBasics/17.进程和计划任务.md)
 
 
 
