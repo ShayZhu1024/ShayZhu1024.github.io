@@ -27,6 +27,7 @@
 ###### [15.网络基础](./LinuxBasics/15.网络基础.md)
 ###### [16.Rocky和Ubuntu网络配置](./LinuxBasics/16.Rocky和Ubuntu网络配置.md)
 ###### [17.进程和计划任务](./LinuxBasics/17.进程和计划任务.md)
+###### [18.系统启动和内核管理](./LinuxBasics/18.系统启动和内核管理.md)
 
 
 
@@ -39,7 +40,7 @@
 ###### [nginx源码编译安装脚本](./scripts/nginx-install/)
 
 
-## Linux面试题 
+## Linux练习题 
 ###### [1.冯诺依曼体系中计算机有哪些组件](./Interview/冯诺依曼体系中计算机有哪些组件.md)
 ###### [2.Linux哲学思想(法则,原则)是什么?](./Interview/Linux哲学思想(法则,原则)是什么.md)
 ###### [3.提示空间满 No space left on device，但 df 可以看到空间很多，为什么](./Interview/提示空间满Nospaceleftondevice但df可以看到空间很多,为什么.md)
@@ -57,6 +58,7 @@
 ###### [15.网络基础](./Interview/网路基础.md)
 ###### [16.Rocky和Ubuntu网络配置](./Interview/Rocky和Ubuntu网络配置.md)
 ###### [17.进程和计划任务](./Interview/进程和计划任务.md)
+###### [18.系统启动和内核管理](./Interview/系统启动和内核管理.md)
 
 
 
