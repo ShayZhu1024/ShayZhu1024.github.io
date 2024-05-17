@@ -294,6 +294,13 @@ ubuntu_config_timezone()
     print_message "set-timezone"
 }
 
+ permit_root_ssh() 
+ {
+    sed -ri 's/^#(PermitRootLogin) .*/\1 yes/' /etc/ssh/sshd_config
+    systemctl restart sshd.service
+    print_message permit ssh root login
+ }
+
 #############ubuntu config end######################
 
 reset_main() 
@@ -317,6 +324,7 @@ reset_main()
         ubuntu_install_common_app
         ubuntu_config_network
         ubuntu_config_timezone
+        permit_root_ssh
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
         print_message "set-hostname"
         sed -ri "/^127.0.1.1/s/^.*$/127.0.0.1 ${UBUNTU_HOSTNAME}/" /etc/hosts
