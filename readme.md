@@ -28,6 +28,7 @@
 ###### [16.Rocky和Ubuntu网络配置](./LinuxBasics/16.Rocky和Ubuntu网络配置.md)
 ###### [17.进程和计划任务](./LinuxBasics/17.进程和计划任务.md)
 ###### [18.系统启动和内核管理](./LinuxBasics/18.系统启动和内核管理.md)
+###### [19.加密和安全](./LinuxBasics/19.加密和安全.md)
 
 
 
@@ -59,6 +60,7 @@
 ###### [16.Rocky和Ubuntu网络配置](./Interview/Rocky和Ubuntu网络配置.md)
 ###### [17.进程和计划任务](./Interview/进程和计划任务.md)
 ###### [18.系统启动和内核管理](./Interview/系统启动和内核管理.md)
+###### [19.加密和安全](./Interview/加密和安全.md)
 
 
 
