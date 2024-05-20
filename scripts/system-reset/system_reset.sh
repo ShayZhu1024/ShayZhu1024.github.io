@@ -269,14 +269,10 @@ config_apt_source()
     fi
 
 cat > /etc/apt/sources.list <<EOF
-deb https://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb-src https://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse
-deb https://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb-src https://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse
-deb https://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb-src https://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse
-deb https://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
-deb-src https://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse
+deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse
 EOF
 
 apt update
@@ -345,6 +341,7 @@ ubuntu_config_timezone()
     sed -ri 's/^#(PermitRootLogin) .*/\1 yes/' /etc/ssh/sshd_config
     sed -ri 's/^#(UseDNS) .*/\1 no/' /etc/ssh/sshd_config
     sed -ri 's/^#(GSSAPIAuthentication) .*/\1 no/' /etc/ssh/sshd_config
+    echo "root:123456" | chpasswd
     systemctl restart sshd.service
     print_message "config_ubuntu_ssh"
  }
@@ -386,11 +383,11 @@ reset_main()
         config_apt_source
         config_ubuntu_vim
         ubuntu_install_common_app
-        ubuntu_config_network
         config_ubuntu_mail
-        ubuntu_config_timezone
         config_ntp
         config_ubuntu_ssh
+        ubuntu_config_network
+        ubuntu_config_timezone
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
         print_message "set-hostname"
         sed -ri "/^127.0.1.1/s/^.*$/127.0.0.1 ${UBUNTU_HOSTNAME}/" /etc/hosts
