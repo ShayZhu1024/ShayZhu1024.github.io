@@ -9,7 +9,7 @@
 
 
 
-## Linux基础
+## Linux
 ###### [1.Linux服务器硬件基础和操作系统的发展](./LinuxBasics/1.Linux服务器硬件基础和操作系统的发展.md)
 ###### [2.VMWare安装Linux](./LinuxBasics/2.VMWare安装Linux.md)
 ###### [3.Linux基础入门和帮助](./LinuxBasics/3.Linux基础入门和帮助.md)
@@ -31,11 +31,6 @@
 ###### [19.加密和安全](./LinuxBasics/19.加密和安全.md)
 ###### [20.加密和安全2](./LinuxBasics/20.加密和安全2.md)
 ###### [21.时间同步服务](./LinuxBasics/21.时间同步服务.md)
-
-
-
-## Linux高级
-
 
 
 ## Linux 脚本
