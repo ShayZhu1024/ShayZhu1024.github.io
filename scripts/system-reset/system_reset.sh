@@ -2,13 +2,14 @@
 
 
 LOCAL_REPO=1
-LOCAL_REPO_IP=10.0.0.4
+LOCAL_REPO_IP=10.0.0.3
 HOST_IP="10.0.0.3"
-NTP_SERVER_IP=10.0.0.4
+NTP_SERVER_IP=ntp.aliyun.com
 ROCKY_HOSTNAME=rocky8-$(echo $HOST_IP | awk -F. '{print $4}')
 UBUNTU_HOSTNAME=ubuntu20-$(echo $HOST_IP | awk -F. '{print $4}')
 QQ_MAIL_FROM=xxxxx@qq.com
 AUTH_PASSWORD=xxxxx
+TEST_MAIL=xxxx
 
 
 # detect operation version
@@ -164,18 +165,19 @@ config_rocky_mail()
     print_message "install postfix mailx"
     systemctl enable --now postfix &>/dev/null
     cat >> /etc/mail.rc <<EOF
-from=$QQ_MAIL_FROM              
+set from=$QQ_MAIL_FROM              
 set smtp=smtp.qq.com                   
 set smtp-auth-user=$QQ_MAIL_FROM    
 set smtp-auth-password=$AUTH_PASSWORD  
 EOF
+    echo "this is a test mail from rocky8" | mail -s test "$TEST_MAIL" 
     print_message "postfix service enable"
 }
 
 rocky_install_common_app() 
 {
-    yum install -y  bash-completion nethogs pcp-system-tools iptraf-ng  psmisc nload iftop iotop sysstat net-tools htop lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof \
-    &>/dev/null
+    yum install -y  bash-completion nethogs pcp-system-tools iptraf-ng  psmisc nload iftop iotop sysstat net-tools \
+    htop lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof &>/dev/null
     print_message "commonApp installed"
 
 }
@@ -323,7 +325,7 @@ ubuntu_config_timezone()
     print_message "set-timezone"
 }
 
- permit_root_ssh() 
+ config_ubuntu_ssh() 
  {
     sed -ri 's/^#(PermitRootLogin) .*/\1 yes/' /etc/ssh/sshd_config
     systemctl restart sshd.service
@@ -341,7 +343,8 @@ set smtp-auth-user=$QQ_MAIL_FROM
 set smtp-auth-password=$AUTH_PASSWORD
 set smtp-auth=login 
 EOF
-print_message "ubuntu mail config"
+    echo "this is a test mail from ubuntu" | s-nail -s "test"  "$TEST_MAIL"
+    print_message "ubuntu mail config"
 }
 
 #############ubuntu config end######################
@@ -369,7 +372,7 @@ reset_main()
         config_ubuntu_mail
         ubuntu_config_timezone
         config_ntp
-        permit_root_ssh
+        config_ubuntu_ssh
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
         print_message "set-hostname"
         sed -ri "/^127.0.1.1/s/^.*$/127.0.0.1 ${UBUNTU_HOSTNAME}/" /etc/hosts
