@@ -146,8 +146,13 @@ baseurl=https://mirrors.aliyun.com/rockylinux/8/PowerTools/x86_64/os
 gpgcheck=0
 priority=1
 EOF
+    print_message "yum repo config"
+    yum clean all
+    print_message "yum clean all"
+    yum makecache 
+    print_message "yum makecache"
     dnf install dnf-plugins-core &>/dev/null
-    print_message "add yum repo"
+    print_message "yum everything"
 }
 
 config_rocky_vim() 
