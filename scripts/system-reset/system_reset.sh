@@ -7,7 +7,8 @@ HOST_IP="10.0.0.3"
 NTP_SERVER_IP=10.0.0.4
 ROCKY_HOSTNAME=rocky8-$(echo $HOST_IP | awk -F. '{print $4}')
 UBUNTU_HOSTNAME=ubuntu20-$(echo $HOST_IP | awk -F. '{print $4}')
-
+QQ_MAIL_FROM=xxxxx@qq.com
+AUTH_PASSWORD=xxxxx
 
 
 # detect operation version
@@ -162,6 +163,12 @@ config_rocky_mail()
     yum -y install postfix mailx &>/dev/null
     print_message "install postfix mailx"
     systemctl enable --now postfix &>/dev/null
+    cat >> /etc/mail.rc <<EOF
+from=$QQ_MAIL_FROM              
+set smtp=smtp.qq.com                   
+set smtp-auth-user=$QQ_MAIL_FROM    
+set smtp-auth-password=$AUTH_PASSWORD  
+EOF
     print_message "postfix service enable"
 }
 
@@ -326,8 +333,15 @@ ubuntu_config_timezone()
  config_ubuntu_mail() 
 {
     apt update
-    apt -y install postfix mailutils &>/dev/null
-    print_message "install postfix mailutils"
+    apt install s-nail
+    cat >> /etc/s-nail.rc <<EOF
+set from=$QQ_MAIL_FROM
+set smtp=smtp.qq.com
+set smtp-auth-user=$QQ_MAIL_FROM
+set smtp-auth-password=$AUTH_PASSWORD
+set smtp-auth=login 
+EOF
+print_message "ubuntu mail config"
 }
 
 #############ubuntu config end######################
@@ -352,7 +366,7 @@ reset_main()
         config_ubuntu_vim
         ubuntu_install_common_app
         ubuntu_config_network
-        config_ubuntu_mai
+        config_ubuntu_mail
         ubuntu_config_timezone
         config_ntp
         permit_root_ssh
