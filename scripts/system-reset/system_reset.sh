@@ -4,6 +4,7 @@
 LOCAL_REPO=1
 LOCAL_REPO_IP=10.0.0.4
 HOST_IP="10.0.0.3"
+NTP_SERVER_IP=10.0.0.4
 ROCKY_HOSTNAME=rocky8-$(echo $HOST_IP | awk -F. '{print $4}')
 UBUNTU_HOSTNAME=ubuntu20-$(echo $HOST_IP | awk -F. '{print $4}')
 
@@ -87,6 +88,7 @@ gpgcheck=0
 EOF
 
 }
+
 
 local_yum_repo_template()
 {
@@ -172,13 +174,6 @@ rocky_install_common_app()
 }
 
 
-config_NTP() 
-{
-    yum install chrony -y &>/dev/null
-    timedatectl set-ntp true &>/dev/null
-    print_message "configNTP"
-}
-
 auto_mount_CD() 
 {
     yum -y install autofs &>/dev/null
@@ -212,7 +207,34 @@ EOF
 #############rockyLinux config end##################
 
 
-
+config_ntp() 
+{
+    if [[ $ID =~ rhel|centos|rocky ]]; then
+        rpm -q chrony &>/dev/null
+        if [ ! $? -eq 0 ]; then
+            yum install -y chrony
+        fi
+        sed -ri 's/^(pool.*)$/#\1/' /etc/chrony.conf
+cat >> /etc/chrony.conf <<EOF
+server $NTP_SERVER_IP  iburst
+EOF
+        systemctl restart chronyd.service
+    elif [[ $ID =~ ubuntu ]]; then
+        dpkg -l chrony &>/dev/null
+        if [ ! $? -eq 0 ]; then
+            apt update
+            apt install -y chrony
+        fi
+        sed -ri 's/^(pool.*)$/#\1/' /etc/chrony/chrony.conf
+cat >> /etc/chrony/chrony.conf <<EOF
+server $NTP_SERVER_IP  iburst
+EOF
+        systemctl restart chronyd.service
+    else
+          echo "系统版本不支持"
+    fi
+    print_message "NTP config" 
+}
 
 
 #############ubuntuLinux config begin###############
@@ -313,7 +335,7 @@ reset_main()
         config_rocky_vim
         config_rocky_mail
         rocky_install_common_app
-        config_NTP
+        config_ntp
         auto_mount_CD
         config_rocky_network
         hostnamectl set-hostname "$ROCKY_HOSTNAME"
@@ -324,6 +346,7 @@ reset_main()
         ubuntu_install_common_app
         ubuntu_config_network
         ubuntu_config_timezone
+        config_ntp
         permit_root_ssh
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
         print_message "set-hostname"
