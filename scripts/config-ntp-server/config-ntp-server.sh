@@ -12,7 +12,7 @@ rocky_ntp()
      if [ ! $? -eq 0 ]; then
            yum install -y chrony
      fi
-     sed -ri 's/^(pool.*)$/#\1/' /etc/chrony.conf
+     sed -ri 's/^(pool|server).*$/#&/' /etc/chrony.conf
 cat >> /etc/chrony.conf <<EOF
 server ntp.aliyun.com iburst
 server ntp1.aliyun.com iburst
@@ -31,7 +31,7 @@ ubuntu_ntp()
           apt update
           apt install -y chrony
      fi
-     sed -ri 's/^(pool.*)$/#\1/' /etc/chrony/chrony.conf
+     sed -ri 's/^(pool|server).*$/#&/' /etc/chrony/chrony.conf
 cat >> /etc/chrony/chrony.conf <<EOF
 server ntp.aliyun.com iburst
 server ntp1.aliyun.com iburst
