@@ -14,7 +14,7 @@ systemctl  enable --now  httpd
 mkdir -p $BASE_DIR
 
 for repo in $REPO_LIST; do 
-    yum reposync --repoid="$repo"  --download-metadata  -p $BASE_DIR &>/dev/null
+    yum reposync --repoid="$repo"  --download-metadata  -p $BASE_DIR 
 done
 
 echo "yum 仓库配置完毕!!!"
