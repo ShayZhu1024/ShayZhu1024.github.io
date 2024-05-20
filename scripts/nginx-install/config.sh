@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -u
-set -e
 
 DEST=/apps/nginx/     #nginx的安装位置
 VERSION=1.20.2      #nginx的版本

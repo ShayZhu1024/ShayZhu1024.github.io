@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -u
-set -e
-
 source ./load_dependencies.sh
 source ./config.sh
 

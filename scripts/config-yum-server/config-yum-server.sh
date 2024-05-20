@@ -1,8 +1,5 @@
 #!/bin/bash
 
-set -e
-set -u
-
 
 #前提配置好了远程yum源
 
