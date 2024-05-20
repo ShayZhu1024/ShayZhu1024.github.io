@@ -167,7 +167,7 @@ config_rocky_mail()
 
 rocky_install_common_app() 
 {
-    yum install -y  bash-completion psmisc net-tools lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof \
+    yum install -y  bash-completion nethogs pcp-system-tools iptraf-ng  psmisc nload iftop iotop sysstat net-tools htop lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof \
     &>/dev/null
     print_message "commonApp installed"
 
@@ -276,7 +276,7 @@ config_ubuntu_vim()
 ubuntu_install_common_app() 
 {
     apt purge ufw lxd lxd-client lxcfs liblxc-common  -y
-    apt install bash-completion  net-tools  -y
+    apt install bash-completion  nload  iptraf-ng dstat  nethogs sysstat iftop iotop net-tools  -y
 
     print_message "commonApp installed"
 
@@ -323,6 +323,13 @@ ubuntu_config_timezone()
     print_message permit ssh root login
  }
 
+ config_ubuntu_mail() 
+{
+    apt update
+    apt -y install postfix mailutils &>/dev/null
+    print_message "install postfix mailutils"
+}
+
 #############ubuntu config end######################
 
 reset_main() 
@@ -345,6 +352,7 @@ reset_main()
         config_ubuntu_vim
         ubuntu_install_common_app
         ubuntu_config_network
+        config_ubuntu_mai
         ubuntu_config_timezone
         config_ntp
         permit_root_ssh
