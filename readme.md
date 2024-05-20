@@ -39,8 +39,10 @@
 
 
 ## Linux 脚本
-###### [RockyLinux和Ubuntu初始化脚本](./scripts/system-reset/)
-###### [nginx源码编译安装脚本](./scripts/nginx-install/)
+###### [RockyLinux和Ubuntu初始化脚本](./scripts/system-reset/system_reset.sh)
+###### [nginx源码编译安装脚本](./scripts/nginx-install/nginx_install.sh)
+###### [配置ntp服务器](./scripts/config-ntp-server/config-ntp-server.sh)
+###### [配置yum服务器](./scripts/config-yum-server/config-yum-server.sh)
 
 
 ## Linux练习题 
