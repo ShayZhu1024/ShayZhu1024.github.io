@@ -245,6 +245,14 @@ EOF
     print_message "NTP config" 
 }
 
+ config_rocky_ssh() 
+ {
+    sed -ri 's/^#(UseDNS) .*/\1 no/' /etc/ssh/sshd_config
+    sed -ri 's/^#(GSSAPIAuthentication) .*/\1 no/' /etc/ssh/sshd_config
+    systemctl restart sshd.service
+    print_message "config_rocky_ssh"
+ }
+
 
 #############ubuntuLinux config begin###############
 config_apt_source()
@@ -328,8 +336,10 @@ ubuntu_config_timezone()
  config_ubuntu_ssh() 
  {
     sed -ri 's/^#(PermitRootLogin) .*/\1 yes/' /etc/ssh/sshd_config
+    sed -ri 's/^#(UseDNS) .*/\1 no/' /etc/ssh/sshd_config
+    sed -ri 's/^#(GSSAPIAuthentication) .*/\1 no/' /etc/ssh/sshd_config
     systemctl restart sshd.service
-    print_message permit ssh root login
+    print_message "config_ubuntu_ssh"
  }
 
  config_ubuntu_mail() 
@@ -360,6 +370,7 @@ reset_main()
         config_rocky_mail
         rocky_install_common_app
         config_ntp
+        config_rocky_ssh
         auto_mount_CD
         config_rocky_network
         hostnamectl set-hostname "$ROCKY_HOSTNAME"
