@@ -1,7 +1,6 @@
 #!/bin/bash
 
 
-LOCAL_REPO=1
 LOCAL_REPO_IP=10.0.0.3
 HOST_IP="10.0.0.3"
 NTP_SERVER_IP=ntp.aliyun.com
@@ -73,42 +72,6 @@ disable_firewall()
     print_message "disalbe default firewall policy"
 }
 
-aliyun_yum_repo_template()
-{
-    if (($# != 3)); then
-        return 1
-    fi
-
-    local id="$1"
-    local name="$2"
-    local repoName="$3"
-cat <<EOF
-[$id]
-name=$name
-baseurl=https://mirrors.aliyun.com/rockylinux/\$releasever/$repoName/\$basearch/os/
-gpgcheck=0
-EOF
-
-}
-
-
-local_yum_repo_template()
-{
-    if (($# != 3)); then
-        return 1
-    fi
-
-    local id="$1"
-    local name="$2"
-    local repoName="$3"
-cat <<EOF
-[$id]
-name=$name
-baseurl=http://$LOCAL_REPO_IP/linux/rockylinux/8/$repoName
-gpgcheck=0
-EOF
-
-}
 
 config_yum()
 {
@@ -123,28 +86,67 @@ config_yum()
 
     print_message "backup system yum repo"
 
-    #add yum repo
-    if ((LOCAL_REPO == 1)); then
-        local repoNameList="BaseOS  AppStream  extras epel"
-        for repoName in  $repoNameList; do
-            local_yum_repo_template "$repoName" "$repoName" "$repoName"   >> "$yumRepoDir"
-            echo >> "$yumRepoDir"
-        done
-        yum clean all &>/dev/null
-        print_message "yum clean all"
-        yum makecache &>/dev/null
-        print_message "yum makecache"
-    else
-        local repoNameList="BaseOS  AppStream  extras PowerTools"
-        for repoName in  $repoNameList; do
-            aliyun_yum_repo_template "$repoName" "$repoName" "$repoName"   >> "$yumRepoDir"
-            echo >> "$yumRepoDir"
-        done
+cat > $yumRepoDir <<EOF
+[BaseOS]
+name=BaseOS
+baseurl=http://$LOCAL_REPO_IP/linux/rockylinux/8/BaseOS
+gpgcheck=0
+priority=1
 
-        # 安装epel
-        yum install -y epel-release
-    fi
+[BaseOS1]
+name=BaseOS1
+baseurl=https://mirrors.aliyun.com/rockylinux/8/BaseOS/x86_64/os
+gpgcheck=0
+priority=2
 
+[AppStream]
+name=AppStream
+baseurl=http://$LOCAL_REPO_IP/linux/rockylinux/8/AppStream
+gpgcheck=0
+priority=1
+
+
+[AppStream1]
+name=AppStream1
+baseurl=https://mirrors.aliyun.com/rockylinux/8/AppStream/x86_64/os
+gpgcheck=0
+priority=2
+
+[extras]
+name=extras
+baseurl=http://$LOCAL_REPO_IP/linux/rockylinux/8/extras
+gpgcheck=0
+priority=1
+
+
+[epel]
+name=epel
+baseurl=http://$LOCAL_REPO_IP/linux/rockylinux/8/epel
+gpgcheck=0
+priority=1
+
+
+[epel1]
+name=epel1
+baseurl=https://mirrors.aliyun.com/epel/8/Everything/x86_64
+gpgcheck=0
+priority=2
+
+
+[epel2]
+name=epel2
+baseurl=https://mirrors.aliyun.com/epel/8/Modular/x86_64
+gpgcheck=0
+priority=2
+
+
+[PowerTools]
+name=PowerTools
+baseurl=https://mirrors.aliyun.com/rockylinux/8/PowerTools/x86_64/os
+gpgcheck=0
+priority=1
+EOF
+    dnf install dnf-plugins-core &>/dev/null
     print_message "add yum repo"
 }
 
