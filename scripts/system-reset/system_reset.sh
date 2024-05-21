@@ -164,7 +164,7 @@ config_rocky_vim()
     fi
     cat ./vimrc.txt >> /etc/vimrc
     print_message "vim config"
-}
+}  
 
 config_rocky_mail() 
 {
@@ -175,7 +175,8 @@ config_rocky_mail()
 set from=$QQ_MAIL_FROM              
 set smtp=smtp.qq.com                   
 set smtp-auth-user=$QQ_MAIL_FROM    
-set smtp-auth-password=$AUTH_PASSWORD  
+set smtp-auth-password=$AUTH_PASSWORD
+set smtp-auth=login
 EOF
     echo "this is a test mail from rocky8" | mail -s test "$TEST_MAIL" 
     print_message "postfix service enable"
@@ -355,7 +356,7 @@ set from=$QQ_MAIL_FROM
 set smtp=smtp.qq.com
 set smtp-auth-user=$QQ_MAIL_FROM
 set smtp-auth-password=$AUTH_PASSWORD
-set smtp-auth=login 
+set smtp-auth=login
 EOF
     echo "this is a test mail from ubuntu" | s-nail -s "test"  "$TEST_MAIL"
     print_message "ubuntu mail config"
