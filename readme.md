@@ -45,7 +45,7 @@
 
 ## Linux练习题 
 ###### [1.冯诺依曼体系中计算机有哪些组件](./Interview/冯诺依曼体系中计算机有哪些组件.md)
-###### [2.Linux哲学思想(法则,原则)是什么?](./Interview/Linux哲学思想(法则,原则)是什么.md)
+###### [2.Linux哲学思想(法则,原则)是什么?](./Interview/Linux哲学思想是什么.md)
 ###### [3.提示空间满 No space left on device，但 df 可以看到空间很多，为什么](./Interview/提示空间满Nospaceleftondevice但df可以看到空间很多,为什么.md)
 ###### [4.提示空间快满,使用rm删除了很大的无用文件后,df仍然看到空间不足,为什么?如何解决?](./Interview/提示空间快满,使用rm删除了很大的无用文件后,df仍然看到空间不足,为什么如何解决.md)
 ###### [5.文本和文件处理相关习题](./Interview/TextAndFileExercise.md)
