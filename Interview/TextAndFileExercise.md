@@ -1,8 +1,16 @@
 ### 1、找出ifconfig “网卡名” 命令结果中本机的IPv4地址
-`ifconfig ens160 | head -n2 | tail -n1 | tr -s " "|cut -d " " -f3`
+```bash
+ifconfig ens160 | head -n2 | tail -n1 | tr -s " "|cut -d " " -f3
+ifconfig eth0 | sed -rn '2s/ +inet +([^ ]*) +netmask.*/\1/p'
+ifconfig eth0 | awk 'NR==2{print $2}'
+```
 
 ### 2、查出分区空间使用率的最大百分比值
-`df | tail -n +2 | tr -s " "|cut -d" " -f 5|tr -d "%"|sort -nr|head -n1`
+```bash
+df | tail -n +2 | tr -s " "|cut -d" " -f 5|tr -d "%"|sort -nr|head -n1
+df  | sed -rn '/^\/dev.*/s#.* +([[:digit:]]+)%.*#\1#p'|sort -nr|head -n 1
+
+```
 
 ### 3、查出用户UID最大值的用户名、UID及shell类型
 `cat /etc/passwd | cut -d":" -f3,1,7|sort -t: -k2 -nr|head -n1`
