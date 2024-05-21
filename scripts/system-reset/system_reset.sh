@@ -183,7 +183,7 @@ EOF
 
 rocky_install_common_app() 
 {
-    yum install -y  bash-completion nethogs pcp-system-tools iptraf-ng  psmisc nload iftop iotop sysstat net-tools \
+    yum install -y  bash-completion nethogs pcp-system-tools screen iptraf-ng  psmisc nload iftop iotop sysstat net-tools \
     htop lrzsz  tree man-pages redhat-lsb-core zip unzip bzip2 wget tcpdump ftp rsync vim lsof &>/dev/null
     print_message "commonApp installed"
 
