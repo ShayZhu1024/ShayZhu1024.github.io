@@ -9,11 +9,13 @@ ifconfig eth0 | awk 'NR==2{print $2}'
 ```bash
 df | tail -n +2 | tr -s " "|cut -d" " -f 5|tr -d "%"|sort -nr|head -n1
 df  | sed -rn '/^\/dev.*/s#.* +([[:digit:]]+)%.*#\1#p'|sort -nr|head -n 1
-
+df | awk '/^\/dev/ {print substr($5,1,length($5)-1)}' | sort -nr | head -n1
 ```
 
 ### 3、查出用户UID最大值的用户名、UID及shell类型
-`cat /etc/passwd | cut -d":" -f3,1,7|sort -t: -k2 -nr|head -n1`
+```bash
+cat /etc/passwd | cut -d":" -f3,1,7|sort -t: -k2 -nr|head -n1
+```
 
 ### 4、查出/tmp的权限，以数字方式显示
 `stat /tmp/ | head -n4 | tail -n1 | cut -d" " -f2 | tr -d "()"|cut -d/ -f1`
