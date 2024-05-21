@@ -164,7 +164,7 @@ config_rocky_vim()
     fi
     cat ./vimrc.txt >> /etc/vimrc
     print_message "vim config"
-}  
+}
 
 config_rocky_mail() 
 {
