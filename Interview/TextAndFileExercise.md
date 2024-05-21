@@ -15,14 +15,21 @@ df | awk '/^\/dev/ {print substr($5,1,length($5)-1)}' | sort -nr | head -n1
 ### 3、查出用户UID最大值的用户名、UID及shell类型
 ```bash
 cat /etc/passwd | cut -d":" -f3,1,7|sort -t: -k2 -nr|head -n1
+awk -v FS=:  -v OFS=' ' '{print $1,$3,$7 }' /etc/passwd | sort -t" " -k2 -nr | head -n1
 ```
 
 ### 4、查出/tmp的权限，以数字方式显示
-`stat /tmp/ | head -n4 | tail -n1 | cut -d" " -f2 | tr -d "()"|cut -d/ -f1`
+```bash
+stat /tmp/ | head -n4 | tail -n1 | cut -d" " -f2 | tr -d "()"|cut -d/ -f1
+stat /tmp/ | sed -rn 's/Access: +\(([0-9]+)\/.*/\1/p'
+
+```
 
 ### 5、统计当前连接本机的每个远程主机IP的连接数，并按从大到小排序
-`who | tr -s " " | cut -d " "  -f5|tr -d "()"|sort|uniq -c|tr -s " "|sort -t " " -k2 -nr`
+```bash
+who | tr -s " " | cut -d " "  -f5|tr -d "()"|sort|uniq -c|tr -s " "|sort -t " " -k2 -nr
 
+```
 
 ### 6.取两个文件相同的行
 	`egrep -f /data/f1.txt  /data/f2.txt`
