@@ -147,24 +147,49 @@ awk -F: '$3<1000{print $1,$3}' /etc/passwd
 
 15、找出/etc/passwd用户名和shell同名的行
 ```bash
+tr ":/" " " < /etc/passwd | awk  '$1==$NF{print $0}'
+```
+
+17 显示三个用户root、halt、shay的UID和默认shell 
+```bash
+awk -F:  '$1=="root"||$1=="halt"||$1=="shay"{print $1,$3,$NF}' /etc/passwd
 
 ```
 
-16、利用df和grep，取出磁盘各分区利用率，并从大到小排序
-
-17 显示三个用户root、mage、wang的UID和默认shell 
-
 18 找出/etc/rc.d/init.d/functions文件中行首为某单词(包括下划线)后面跟一个小括号的行
+```bash
+cat /etc/rc.d/init.d/functions | egrep '^[0-9a-zA-Z_]+\(\)'
+```
 
 19 使用egrep取出/etc/rc.d/init.d/functions中其基名
+```bash
+egrep -o '[a-zA-Z0-9_-]+$' <<<'/etc/rc.d/init.d/functions'
+```
 
 20 使用egrep取出上面路径的目录名
+```bash
+egrep -o '^.*/' <<<'/etc/rc.d/init.d/functions'
+```
 
 21 统计last命令中以root登录的每个主机IP地址登录次数
+```bash
+last | awk '$1=="root"{print $3}' | sort | uniq -c
+```
 
 22 利用扩展正则表达式分别表示0-9、10-99、100-199、200-249、250-255 
+```bash
+[0-9]
+[1-9][0-9]
+1[0-9][0-9]
+2[0-4][0-9]
+25[0-5]
+```
 
-23 显示ifconfig命令结果中所有IPv4地址2将此字符串：welcome to magedu linux 中的每个字符去重并排序，重复次数多的排到前面
+23 1.显示ifconfig命令结果中所有IPv4地址2.将此字符串：welcome to magedu linux 中的每个字符去重并排序，重复次数多的排到前面
+```bash
+ifconfig | egrep -o "[0-2]?[0-9]?[0-9]?\.[0-2]?[0-9]?[0-9]?\.[0-2]?[0-9]?[0-9]?\.[0-2]?[0-9]?[0-9]?"
+egrep -o '[a-z]' <<< "welcome to magedu linux" | sort | uniq -c | sort -nr
+```
 
 24、删除centos7系统/etc/grub2.cfg文件中所有以空白开头的行行首的空白字符
 
