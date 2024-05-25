@@ -105,26 +105,50 @@ ls -a /etc | egrep '^[mnrp].*\.conf$'
 6、只显示/root下的隐藏文件和目录列表
 ```bash
 ls -d /root/.[^.]*  /root/*/
+ls -aF /root/ | egrep '^\.[^./].*$|^[^.].*/'
 
 ```
 
 7、只显示/etc下的非隐藏目录列表
-
-8、显示/proc/meminfo文件中以大小s开头的行(要求：使用两种方法) 
+```bash
+ls -d /etc/[^.]*/
+ls -F  /etc/ | egrep '^.*/'
+```
 
 9、显示/etc/passwd文件中不以/bin/bash结尾的行
+```bash
+egrep -v '^.*/bin/bash$'  /etc/passwd
+```
 
 10、显示用户rpc默认的shell程序
+```bash
+sed -rn  's/^rpc.*:(.*)/\1/p' /etc/passwd
+```
 
 11、找出/etc/passwd中的两位或三位数
+```bash
+egrep -o '[0-9]{2,3}' /etc/passwd
+```
 
 12、显示CentOS7的/etc/grub2.cfg文件中，至少以一个空白字符开头的且后面有非空白字符的行
+```bash
+egrep '^ +[^ ]*' /etc/grub2.cfg
+```
 
 13、找出“netstat -tan”命令结果中以LISTEN后跟任意多个空白字符结尾的行
+```bash
+egrep  '.*LISTEN *' <(netstat -tan)
+```
 
 14、显示CentOS7上所有UID小于1000以内的用户名和UID 
+```bash
+awk -F: '$3<1000{print $1,$3}' /etc/passwd
+```
 
-15、添加用户bash、testbash、basher、sh、nologin(其shell为/sbin/nologin),找出/etc/passwd用户名和shell同名的行
+15、找出/etc/passwd用户名和shell同名的行
+```bash
+
+```
 
 16、利用df和grep，取出磁盘各分区利用率，并从大到小排序
 
