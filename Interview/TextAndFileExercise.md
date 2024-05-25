@@ -27,16 +27,22 @@ stat /tmp/ | sed -rn 's/Access: +\(([0-9]+)\/.*/\1/p'
 
 ### 5、统计当前连接本机的每个远程主机IP的连接数，并按从大到小排序
 ```bash
-who | tr -s " " | cut -d " "  -f5|tr -d "()"|sort|uniq -c|tr -s " "|sort -t " " -k2 -nr
+ss -nt | awk  'NR>=2{print $5}' | awk -F: '{print $1}' | sort | uniq -c | sort -nr
 
 ```
 
 ### 6.取两个文件相同的行
-	`egrep -f /data/f1.txt  /data/f2.txt`
-	`paste /data/f1.txt /data/f2.txt | sort | uniq -d`
+```bash
+egrep -o  -f a.txt  b.txt
+cat a.txt b.txt | sort  | uniq -d
+```
 
 ### 7.处理器核心个数
-	`egrep -c processor /proc/cpuinfo`
+```bash
+egrep -c "processor" <(cat /proc/cpuinfo)
+lscpu | awk  '/^CPU\(s\):/{print $2}'
+
+```
 	
 ### 8.算出所有人的年龄总和
 ```bash
@@ -47,7 +53,8 @@ xiaoqiang=22
 
 cut -d= -f2 ./age.txt | paste -s -d+ | bc
 cut -d"=" -f2 ./age.txt|tr '\n' + | grep -Eo ".*[0-9]"|bc
-
+awk -F=  '{print $2}' ./age.txt | paste -s -d "+" | bc
+awk -F= -v ORS='+' '{print $2}' ./age.txt  | egrep  -o '^.*[0-9]' | bc
 ```
 
 ### 9.12-1点日志
@@ -67,16 +74,39 @@ df | sed -En  's/^\/dev\/.* +([0-9]+)%.*/\1/p' | sort -nr
 ### 11 通配符或者正则, 使用文本三剑客或者其他文本处理工具
 
 1、显示/etc目录下所有以l开头，以一个小写字母结尾，且中间出现至少一位数字的文件或目录列表
+```bash
+ls -d  /etc/l*[0-9]*[[:lower:]]
+ls -a /etc/ | egrep '^l.*[0-9]+.*[a-z]$'
+```
 
 2、显示/etc目录下以任意一位数字开头，且以非数字结尾的文件或目录列表
-
+```bash
+ls -d /etc/[0-9]*[^0-9]
+ls -a /etc | egrep '^[0-9].*[^0-9]$'
+```
 3、显示/etc/目录下以非字母开头，后面跟了一个字母及其它任意长度任意字符的文件或目录列表
+```bash
+ls -d /etc/[^a-z][a-z]*
+ls -a /etc/ | egrep '^[^[:alpha:]][[:alpha:]].*'
+```
 
 4、显示/etc/目录下所有以rc开头，并后面是0-6之间的数字，其它为任意字符的文件或目录列表
+```bash
+ls -d /etc/rc[0-6]*
+ls -a /etc/ | egrep '^rc[0-6].*'
+```
 
 5、显示/etc目录下，所有.conf结尾，且以m,n,r,p开头的文件或目录列表
+```bash
+ls -d /etc/[mnrp]*.conf
+ls -a /etc | egrep '^[mnrp].*\.conf$'
+```
 
 6、只显示/root下的隐藏文件和目录列表
+```bash
+ls -d /root/.[^.]*  /root/*/
+
+```
 
 7、只显示/etc下的非隐藏目录列表
 
