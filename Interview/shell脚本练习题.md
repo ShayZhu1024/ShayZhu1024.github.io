@@ -54,9 +54,37 @@ cat /proc/$PID/environ  # PID 是自己定义的变量，不是系统环境变�
 
 
 6 鸡兔同笼，是中国古代著名典型趣题之一，记载于《孙子算经》之中。今有雉兔同笼，上有三十五头，下有九十四足，问雉兔各几何？
-
+```bash
+#!/bin/bash            
+                       
+HEADS=$1               
+FEET=$2                
+RABBITS=$((($FEET-$HEADS*2)/2))
+CHICKENS=$(($HEADS-$RABBITS))
+                       
+echo "rabbits: $RABBITS"
+echo "chickens: $CHICKENS" 
+```
 
 7.编写脚本 argsnum.sh，接受一个文件路径作为参数；如果参数个数小于1，则提示用户“至少应该给一个参数”，并立即退出；如果参数个数不小于1，则显示第一个参数所指向的文件中的空白行数
+```bash
+#!/bin/bash
+
+(($# < 1)) && { echo "至少应该给一个参数"; exit 1; }
+FILE_DIR=$1
+if [ ! -e $FILE_DIR ]; then
+    echo "文件不存在"
+    exit 1
+elif [ ! -f $FILE_DIR ]; then
+    echo "文件不是普通文件, 无法打开"
+    exit 1
+fi
+
+COUNT=`egrep -c  '^$'  "$FILE_DIR"`
+
+echo "$FILE_DIR文件的空白行数是：$COUNT"
+
+```
 
 8、编写脚本 hostping.sh，接受一个主机的IPv4地址做为参数，测试是否可连通。如果能ping通，则提示用户“该IP地址可访问”；如果不可ping通，则提示用户“该IP地址不可访问”
 
