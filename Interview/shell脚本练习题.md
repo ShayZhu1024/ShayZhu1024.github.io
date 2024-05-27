@@ -149,22 +149,70 @@ fi
 ```
 
 12、编写脚本 nologin.sh和 login.sh，实现禁止和允许普通用户登录系统
+```bash
+#nologin.sh
+#!/bin/bash
+if [ ! -e /etc/nologin ]; then
+    touch /etc/nologin
+fi
+
+#login.sh
+if [ -e /etc/nologin ]; then
+    rm -rf /etc/nologin
+fi
+
+```
 
 13、让所有用户的PATH环境变量的值多出一个路径，例如：/usr/local/apache/bin
-
-14
-
 ```bash
-用户 root 登录时，将命令指示符变成红色，并自动启用如下别名： rm=‘rm -i’
+#!/bin/bash
+
+PATH+=:/usr/local/apache/bin
+export PATH
+
+
+# 执行这个脚本使用 source  ./script.sh生效
+#或则把这个脚本放到 /etc/profile.d目录下
+
+```
+14
+```bash
+用户 root 登录时，将命令指示符变成红色，并自动启用如下别名： 
+rm=‘rm -i’
 cdnet=‘cd /etc/sysconfig/network-scripts/’
 editnet=‘vim /etc/sysconfig/network-scripts/ifcfg-eth0’
 editnet=‘vim /etc/sysconfig/network-scripts/ifcfg-eno16777736 或 ifcfg-ens33 ’ (如果系统是
 CentOS7)
 ```
-15、任意用户登录系统时，显示红色字体的警示提醒信息“Hi,dangerous！”
 
+```bash
+#!/bin/bash
+
+if [ $USER = root ]; then
+    PS1='\[\e[1;31m\][\t \u@\h \W]\[\e[0m\]$ '
+    alias rm='rm -i'
+    alias cdnet='cd /etc/sysconfig/network-scripts/'
+    alias editnet='vim /etc/sysconfig/network-scirpts/ifcfg-eth0'
+fi
+
+#把这个脚本放到/etc/profile.d目录下
+```
+
+
+15、任意用户登录系统时，显示红色字体的警示提醒信息“Hi,dangerous！”
+```bash
+#!/bin/bash
+
+echo -e "\e[31;1mHi,dangerous!\e[0m"
+
+#此脚本放到 /etc/profile.d目录下
+
+```
 
 16、编写生成脚本基本格式的脚本，包括作者，联系方式，版本，时间，描述等
+```bash
+
+```
 
 
 17、编写脚本 createuser.sh，实现如下功能：使用一个用户名做为参数，如果指定参数的用户存在，就显示其存在，否则添加之。并设置初始密码为123456，显示添加的用户的id号等信息，在此新用户第一次登录时，会提示用户立即改密码，如果没有参数，就提示：请输入用户名
