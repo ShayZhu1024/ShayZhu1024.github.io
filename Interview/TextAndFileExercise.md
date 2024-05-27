@@ -313,52 +313,77 @@ END {
 ### 文件查找
 
 1、查找/var目录下属主为root，且属组为mail的所有文件
+```bash
+find /var/   -user root -group mail
+```
 
 2、查找/var目录下不属于root、lp、gdm的所有文件
+```bash
+find /var/   -not  \( -user root -o  -user lp -o  -user gdm \)
+```
 
 3、查找/var目录下最近一周内其内容修改过，同时属主不为root，也不是postfix的文件
+```bash
+find /var/   -mtime -7  -not  \( -user root -o  -user postfix \)
+```
 
 4、查找当前系统上没有属主或属组，且最近一个周内曾被访问过的文件
+```bash
+find  / \( -nouser -o -nogroup \)  -atime -7
+```
 
 5、查找/etc目录下大于1M且类型为普通文件的所有文件
+```bash
+find /etc/  -size +1M -type f
+```
 
 6、查找/etc目录下所有用户都没有写权限的文件
+```bash
+find /etc/  -not \( -perm /222 \)
+```
 
 7、查找/etc目录下至少有一类用户没有执行权限的文件
+```bash
+find /etc/  -not -perm -111 
+```
 
 8、查找/etc/init.d目录下，所有用户都有执行权限，且其它用户有写权限的文件
-
-
-
-
-
-
-
+```bash
+find /etc/init.d/  -perm -113 
+```
 
 
 
 11 每天将/etc/目录下所有文件，备份到/data独立的子目录下，并要求子目录格式为 backupYYYYmm-dd，备份过程可见
 
-
+```bash
+```
 
 
 12 创建/data/rootdir目录，并复制/root下所有文件到该目录内，要求保留原有权限
-
+```bash
+```
 
 13 为所有的f开头包含conf的文件加上.bak后缀：
+```bash
+```
 
 
-
-14 #去掉所有的bak后缀：
+14 去掉所有的bak后缀：
+```bash
+```
 
 15 如何创建/testdir/dir1/x, /testdir/dir1/y, /testdir/dir1/x/a, /testdir/dir1/x/b, /testdir/dir1/y/a, /testdir/dir1/y/b
-
+```bash
+```
 
 16 如何创建/testdir/dir2/x, /testdir/dir2/y, /testdir/dir2/x/a, /testdir/dir2/x/b
-
+```bash
+```
 
 17 如何创建/testdir/dir3, /testdir/dir4, /testdir/dir5, /testdir/dir5/dir6, /testdir/dir5/dir7
-
+```bash
+```
 
 
 
