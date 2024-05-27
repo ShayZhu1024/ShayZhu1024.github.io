@@ -44,12 +44,14 @@ echo "max is `df | awk '/^\/dev.*/{print $5}' | sort -nr | head -n1`"
 ```bash
 #!/bin/bash
 
-
+ss -t  | awk  '/^ESTAB/{print $5}' | cut -d: -f1 | sort | uniq -c | sort -nr
 ```
 
 5、 查看指定进程的环境变量
+```bash
+cat /proc/$PID/environ  # PID 是自己定义的变量，不是系统环境变量
+```
 
-`cat /proc/$PID/environ`  # PID 是自己定义的变量，不是系统环境变量
 
 6 鸡兔同笼，是中国古代著名典型趣题之一，记载于《孙子算经》之中。今有雉兔同笼，上有三十五头，下有九十四足，问雉兔各几何？
 
