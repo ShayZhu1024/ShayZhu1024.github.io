@@ -1,10 +1,51 @@
 1、编写脚本 systeminfo.sh，显示当前主机系统信息，包括:主机名，IPv4地址，操作系统版本，内核版本，CPU型号，内存大小，硬盘大小
 
+```bash
+#!/bin/bash
+
+HOST_NAME=`hostname`
+IPV4_ADDR=`hostname -I`
+OS_VERSION=`sed -rn '/^PRETTY_NAME="/s/^.*"(.*)"/\1/p' /etc/os-release`
+KERNEL_VERSION=`uname -r`
+CPU_TYPE=`lscpu  | sed -rn "s/^Model name: +(.*)$/\1/p"`
+MEMORY=`free -h | awk 'NR==2{print $2}'`
+DISK=`lsblk | awk '/^sd.*/{print $1,$4}'`
+
+echo "HOST_NAME:${HOST_NAME}"
+echo "IPV4_ADDR:${IPV4_ADDR}"
+echo "OS_VERSION:${OS_VERSION}"
+echo "KERNEL_VERSION:${KERNEL_VERSION}"
+echo "CPU_TYPE:${CPU_TYPE}"
+echo "MEMORY:${MEMORY}"
+echo "DISK:${DISK}"
+
+```
+
 2、编写脚本 backup.sh，可实现每日将 /etc/ 目录备份到 /backup/etcYYYY-mm-dd中
+
+```bash
+#!/bin/bash
+if [ ! -e /backup ]; then 
+    mkdir -p /backup
+fi
+cp -a  /etc/   /backup/etc`date +%F`
+
+```
 
 3、编写脚本 disk.sh，显示当前硬盘分区中空间利用率最大的值
 
+```bash
+#!/bin/bash
+echo "max is `df | awk '/^\/dev.*/{print $5}' | sort -nr | head -n1`"
+```
+
 4、编写脚本 links.sh，显示正连接本主机的每个远程主机的IPv4地址和连接数，并按连接数从大到小排序
+
+```bash
+#!/bin/bash
+
+
+```
 
 5、 查看指定进程的环境变量
 
