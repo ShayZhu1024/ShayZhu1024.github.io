@@ -357,33 +357,45 @@ find /etc/init.d/  -perm -113
 11 每天将/etc/目录下所有文件，备份到/data独立的子目录下，并要求子目录格式为 backupYYYYmm-dd，备份过程可见
 
 ```bash
+vim /etc/cron
+0 0 * * *  cp -av  /etc   /data/backup`date +\%Y\%m-\%d`
 ```
 
 
 12 创建/data/rootdir目录，并复制/root下所有文件到该目录内，要求保留原有权限
 ```bash
+rm -rf  /data/rootdir
+cp -a /root   /data/rootdir 
 ```
 
 13 为所有的f开头包含conf的文件加上.bak后缀：
 ```bash
+find .  -type f -name 'f*conf*'  -exec mv {} {}.bak \;
 ```
 
 
 14 去掉所有的bak后缀：
 ```bash
+rename ".bak" ""  ./
 ```
 
 15 如何创建/testdir/dir1/x, /testdir/dir1/y, /testdir/dir1/x/a, /testdir/dir1/x/b, /testdir/dir1/y/a, /testdir/dir1/y/b
 ```bash
+mkdir -p /testdir/dir1/{x,y}/{a,b}
 ```
 
 16 如何创建/testdir/dir2/x, /testdir/dir2/y, /testdir/dir2/x/a, /testdir/dir2/x/b
 ```bash
+mkdir -p /testdir/dir2/{x,y}
+mkdir -p /testdir/dir2/x/{a,b}
 ```
 
 17 如何创建/testdir/dir3, /testdir/dir4, /testdir/dir5, /testdir/dir5/dir6, /testdir/dir5/dir7
 ```bash
+mkdir /testdir/dir{3..5}
+mkdir /testdir/dir5/dir{6,7}
 ```
+
 
 
 
