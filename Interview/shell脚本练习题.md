@@ -87,12 +87,66 @@ echo "$FILE_DIR文件的空白行数是：$COUNT"
 ```
 
 8、编写脚本 hostping.sh，接受一个主机的IPv4地址做为参数，测试是否可连通。如果能ping通，则提示用户“该IP地址可访问”；如果不可ping通，则提示用户“该IP地址不可访问”
+```bash
+#!/bin/bash               
+                          
+(($# < 1)) && { echo "需要一个IPV4地址作为参数"; exit 1; }
+                          
+IP=$1                     
+                          
+if ping -c1 $IP &>/dev/null; then
+    echo "$IP 可以访问"
+else                      
+    echo "$IP 不可访问"                                                           
+fi 
+
+```
 
 9、编写脚本 checkdisk.sh，检查磁盘分区空间和inode使用率，如果超过80%，就发广播警告空间将满
+```bash
+#!/bin/bash                       
+                                  
+DISK_USED=`df | awk  '/^\/dev/{print $5}'  |tr -d "%" |sort -nr | head -n1`
+INODE_USED=`df -i  | awk  '/^\/dev/{print $5}'  |tr -d "%" |sort -nr | head -n1`
+                                  
+if ((DISK_USED >= 80)); then   
+    echo "disk space used exceed  80%" | wall &>/dev/null
+elif ((INODE_USED >= 80)); then                                                                                                       
+     echo "disk inode used exceed 80%" | wall &>/dev/null
+fi 
+
+```
 
 10、编写脚本 per.sh，判断当前用户对指定参数文件，是否不可读并且不可写
+```bash
+#!/bin/bash
+  
+(($#<1)) && { echo "need 1 arg"; exit; }
+FILE=$1
+if [ ! -r $FILE -a ! -w $FILE  ]; then
+    echo "yes, $USER can't read and write $FILE"
+elif [ -r $FILE ]; then
+    echo "No, $USER can read $FILE"
+elif [ -w $FILE ]; then
+    echo "No, $USER can write $FILE"
+fi  
+
+```
 
 11、编写脚本 excute.sh ，判断参数文件是否为sh后缀的普通文件，如果是，添加所有人可执行权限，否则提示用户非脚本文件
+```bash
+#!/bin/bash                          
+                                     
+(($#<1)) && { echo "need 1 arg"; exit; }
+                                     
+FILE=$1                              
+                                     
+if [ -f $1 ] && [[ $1 =~ ^.*\.sh$ ]]; then
+    chmod +x $FILE                   
+else                                 
+    echo "$FILE is not script file"                                               
+fi 
+```
 
 12、编写脚本 nologin.sh和 login.sh，实现禁止和允许普通用户登录系统
 
