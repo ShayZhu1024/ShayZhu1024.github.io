@@ -211,6 +211,19 @@ echo -e "\e[31;1mHi,dangerous!\e[0m"
 
 16、编写生成脚本基本格式的脚本，包括作者，联系方式，版本，时间，描述等
 ```bash
+#!/bin/bash
+cat >> /etc/vimrc <<EOF
+        call setline(1, "\#!/bin/bash")
+        call setline(2, "################################")
+        call setline(3, "# Author: ShayZhu")                
+        call setline(4, "# Contact: shayzhu@126.com")       
+        call setline(5, "# Version: 1.0.0")                 
+        call setline(6, '# Date: ' . strftime('%Y-%m-%d'))
+        call setline(7, '# Description:')                   
+        call setline(8, '################################')                                     
+        call setline(9, '')                                 
+        call setline(10, '')
+EOF
 
 ```
 
