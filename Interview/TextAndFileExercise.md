@@ -192,22 +192,50 @@ egrep -o '[a-z]' <<< "welcome to magedu linux" | sort | uniq -c | sort -nr
 ```
 
 24、删除centos7系统/etc/grub2.cfg文件中所有以空白开头的行行首的空白字符
+```bash
+sed -ri 's/^ +([^ ]+)/\1/' /etc/grub2.cfg
+```
 
 25、删除/etc/fstab文件中所有以#开头，后面至少跟一个空白字符的行的行首的#和空白字符
+```bash
+sed -ri 's/^# +([^ ]+)/\1/' /etc/fstab
+```
 
 26、在centos6系统/root/install.log每一行行首增加#号
+```bash
+sed -ri 's/^/#/' /root/install.log
+```
 
 27、在/etc/fstab文件中不以#开头的行的行首增加#号
+```bash
+sed -ri 's/(^[^#].*)/#\1/' /etc/fstab
+```
 
 28、处理/etc/fstab路径,使用sed命令取出其目录名和基名
+```bash
+目录名：sed -rn 's#^(/[^ ]+) +.*#\1#p' /etc/fstab  | sed -rn 's#/(([^/]+/)+)(.*)#/\1#p'
+基名： sed -rn 's#^(/[^ ]+) +.*#\1#p' /etc/fstab  | sed -rn 's#/(([^/]+/)+)(.*)#\3#p'
+```
 
 29、利用sed 取出ifconfig命令中本机的IPv4地址
+```bash
+ifconfig | sed -rn 's#^ +inet +([0-2]?[0-9]?[0-9]?\.[0-2]?[0-9]?[0-9]?\.[0-2]?[0-9]?[0-9]?\.[0-2]?[0-9]?[0-9]) +.*?#\1#p'
+```
 
 30、统计centos安装光盘中Package目录下的所有rpm文件的以.分隔倒数第二个字段的重复次数
+```bash
+ls /mnt/Packages  | awk -F. '{print $(NF-1)}' | sort | uniq -c
+```
 
-31、统计/etc/init.d/functions文件中每个单词的出现次数，并排序（用grep和sed两种方法分别实现）
+31、统计/etc/init.d/functions文件中每个单词的出现次数，并排序
+```bash
+egrep -o '[a-zA-Z0-9_]+' /etc/init.d/functions  | sort  | uniq -c | sort -nr
+```
 
 32、将文本文件的n和n+1行合并为一行，n为奇数行
+```bash
+awk '{if(NR % 2 != 0) {printf "%s ", $0} else {print $0}}' ./file.txt
+```
 
 33、文件host_list.log 如下格式，请提取”.magedu.com”前面的主机名部分并写入到回到该文件中
 ```bash
@@ -216,19 +244,25 @@ blog.magedu.com
 study.magedu.com
 linux.magedu.com
 python.magedu.com
+
+awk -F. '{print $1}' ./host_list.log  >> host_list.log
 ```
 34、统计/etc/fstab文件中每个文件系统类型出现的次数
-
-35、统计/etc/fstab文件中每个单词出现的次数
+```bash
+awk '/^[^#]/{print $3}'  /etc/fstab  | sort | uniq -c
+```
 
 36、提取出字符串Yd$C@M05MB%9&Bdh7dq+YVixp3vpw中的所有数字
+```bash
+egrep -o '[0-9]' <<<"Yd$C@M05MB%9&Bdh7dq+YVixp3vpw"
+```
 
 37、 文件random.txt记录共5000个随机的整数，存储的格式100,50,35,89…请取出其中最大和最小的整
 数
-
-
-38、 解决Dos攻击生产案例：监控当某个IP并发连接数超过100时，即调用防火墙命令封掉对应的IP，监
-控频率每隔5分钟。防火墙命令为：iptables -A INPUT -s IP -j REJECT
+```bash
+tr ',' '\n'  < random.txt  | sort -nr | head -n 1
+tr ',' '\n'  < random.txt  | sort -nr | tail -n 1
+```
 
 
 39、将以下文本文件awktest.txt中 以inode列为标记，对inode列相同的counts列进行累加，并且统计
@@ -245,6 +279,35 @@ inode|beginnumber|endnumber|counts|
 311|3313470000|3313499999|30000|
 311|3362120962|3362120963|2|
 
+
+
+awk -F'|' '
+NR > 1 { 
+  inode = $1; 
+  begin = $2; 
+  end = $3; 
+  count = $4; 
+
+  # 累加 counts 值
+  counts[inode] += count; 
+
+  # 更新最小 beginnumber
+  if (!minbegin[inode] || begin < minbegin[inode]) {
+    minbegin[inode] = begin;
+  }
+
+  # 更新最大 endnumber
+  if (!maxend[inode] || end > maxend[inode]) {
+    maxend[inode] = end;
+  }
+}
+END {
+  # 输出最终结果
+  print "inode|minbeginnumber|maxendnumber|totalcounts|";
+  for (i in counts) {
+    print i "|" minbegin[i] "|" maxend[i] "|" counts[i] "|";
+  }
+}' awktest.txt
 ```
 
 ### 文件查找
@@ -274,27 +337,27 @@ inode|beginnumber|endnumber|counts|
 
 
 
-### 11 每天将/etc/目录下所有文件，备份到/data独立的子目录下，并要求子目录格式为 backupYYYYmm-dd，备份过程可见
+11 每天将/etc/目录下所有文件，备份到/data独立的子目录下，并要求子目录格式为 backupYYYYmm-dd，备份过程可见
 
 
 
 
-### 12 创建/data/rootdir目录，并复制/root下所有文件到该目录内，要求保留原有权限
+12 创建/data/rootdir目录，并复制/root下所有文件到该目录内，要求保留原有权限
 
 
-### 13 为所有的f开头包含conf的文件加上.bak后缀：
+13 为所有的f开头包含conf的文件加上.bak后缀：
 
 
 
-### 14 #去掉所有的bak后缀：
+14 #去掉所有的bak后缀：
 
-### 15 如何创建/testdir/dir1/x, /testdir/dir1/y, /testdir/dir1/x/a, /testdir/dir1/x/b, /testdir/dir1/y/a, /testdir/dir1/y/b
-
-
-### 16 如何创建/testdir/dir2/x, /testdir/dir2/y, /testdir/dir2/x/a, /testdir/dir2/x/b
+15 如何创建/testdir/dir1/x, /testdir/dir1/y, /testdir/dir1/x/a, /testdir/dir1/x/b, /testdir/dir1/y/a, /testdir/dir1/y/b
 
 
-### 17 如何创建/testdir/dir3, /testdir/dir4, /testdir/dir5, /testdir/dir5/dir6, /testdir/dir5/dir7
+16 如何创建/testdir/dir2/x, /testdir/dir2/y, /testdir/dir2/x/a, /testdir/dir2/x/b
+
+
+17 如何创建/testdir/dir3, /testdir/dir4, /testdir/dir5, /testdir/dir5/dir6, /testdir/dir5/dir7
 
 
 
