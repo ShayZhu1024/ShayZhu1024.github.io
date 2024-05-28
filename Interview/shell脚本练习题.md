@@ -746,6 +746,21 @@ n阶斐波那契数列
 ```bash
 #!/bin/bash
 
+f()
+{
+    local n=$1
+    if ((n==0)); then
+        echo '0'
+        return 0
+    elif ((n==1)); then
+        echo '1'
+        return 0
+    fi
+    echo $((`f $[n-1]` + `f $[n-2]`))
+    return 0
+}
+
+f 10
 
 ```
 
