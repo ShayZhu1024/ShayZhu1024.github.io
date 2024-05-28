@@ -459,15 +459,46 @@ echo
 32、判断/var/目录下所有文件的类型
 ```bash
 #!/bin/bash
+ 
+DIR=/var/
 
+for PATH in $DIR/*; do 
+    if [ -h $PATH ]; then
+        echo "$PATH is a link file"
+    elif [ -d $PATH ]; then
+        echo "$PATH is directory"
+    elif [ -f "$PATH" ]; then
+        echo "$PATH" is rugular  file
+    elif [ -p "$PATH" ]; then                                                                                            
+        echo "$PATH is pipe file "
+    elif [ -b "$PATH" ]; then   
+        echo "$PATH is block device file "
+    elif [ -c "$PATH" ]; then   
+        echo "$PATH is character device file "
+    elif [ -S "$PATH" ]; then   
+        echo "$PATH is socket file "
+    else
+        echo "$PATH is other file "
+    fi
+done
 
 ```
 
 33、添加10个用户user1-user10，密码为8位随机字符
 ```bash
 #!/bin/bash
-
-
+                                     
+for NAME in user{1..10}; do
+    if getent passwd $NAME &>/dev/null; then
+        echo "$NAME is exist!!!"            
+    else                                    
+        useradd  "$NAME"
+        PASSWD=$(cat  /dev/urandom  | tr -dc '[[:alnum:],./?;)(*&%$#@!~)-]' | head -c8)    
+        echo "$NAME:$PASSWD" | tee -a  ./addUsers.txt |  chpasswd   
+        passwd --expire $NAME &>/dev/null                                                           
+        id $NAME                            
+    fi 
+done
 ```
 
 
