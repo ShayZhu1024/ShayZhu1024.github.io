@@ -291,13 +291,23 @@ fi
 ```
 
 20、编写脚本 checkint.sh，判断用户输入的参数是否为正整数
-
-
-21、编写脚本 reset.sh，实现系统安装后的初始化环境，包括：1、别名 2、环境变量，如PS1等 
-
-22、安装常用软件包，如：tree 5、实现固定的IP的设置，6、vim的设置等
+```bash
+                                             
+(($#<1)) && { echo "need 1 number arg"; exit; }
+                                             
+NUM=$1                                       
+                                             
+if [[ $NUM =~ ^\+?[0-9]+$ ]] && ((NUM != 0)); then                                                             
+    echo "yes! $NUM is positive integer " 
+else                                         
+    echo "no!! $NUM is not positive integer "
+fi  
+```
 
 23 面试题，计算1+2+3+...+100 的结果
+```bash
+
+```
 
 24 100以内的奇数之和
 
@@ -359,40 +369,7 @@ ad865d2f63是通过对随机数变量RANDOM随机执行命令： echo $RANDOM|md
 
 49、 编写函数，实现两个数字做为参数，返回最大值
 
-50、 
 
-```bash
-
-编写服务脚本/root/bin/testsrv.sh，完成如下要求
-(1) 脚本可接受参数：start, stop, restart, status 
-(2) 如果参数非此四者之一，提示使用格式后报错退出
-(3) 如是start:则创建/var/lock/subsys/SCRIPT_NAME, 并显示“启动成功”
-考虑：如果事先已经启动过一次，该如何处理？
-(4) 如是stop:则删除/var/lock/subsys/SCRIPT_NAME, 并显示“停止完成”
-考虑：如果事先已然停止过了，该如何处理？
-(5) 如是restart，则先stop, 再start
-考虑：如果本来没有start，如何处理？
-(6) 如是status, 则如果/var/lock/subsys/SCRIPT_NAME文件存在，则显示“SCRIPT_NAME is 
-running...”，如果/var/lock/subsys/SCRIPT_NAME文件不存在，则显示“SCRIPT_NAME is 
-stopped...”
-(7)在所有模式下禁止启动该服务，可用chkconfig 和 service命令管理
-说明：SCRIPT_NAME为当前脚本名
-```
-
-51、
-```bash
-编写脚本/root/bin/copycmd.sh
-(1) 提示用户输入一个可执行命令名称
-(2) 获取此命令所依赖到的所有库文件列表
-(3) 复制命令至某目标目录(例如/mnt/sysroot)下的对应路径下
- 如：/bin/bash ==> /mnt/sysroot/bin/bash
-/usr/bin/passwd ==> /mnt/sysroot/usr/bin/passwd
-(4) 复制此命令依赖到的所有库文件至目标目录下的对应路径下： 如：/lib64/ld-linux-x86-64.so.2 
-==> /mnt/sysroot/lib64/ld-linux-x86-64.so.2
-(5)每次复制完成一个命令后，不要退出，而是提示用户键入新的要复制的命令，并重复完成上述功
-能；直到用户输入quit退出
-
-```
 
 52、
 ```bash
@@ -414,6 +391,7 @@ n阶斐波那契数列
 54、
 编写脚本，定义一个数组，数组中的元素对应的值是/var/log目录下所有以.log结尾的文件；统计
 出其下标为偶数的文件中的行数之和
+
 
 
 
