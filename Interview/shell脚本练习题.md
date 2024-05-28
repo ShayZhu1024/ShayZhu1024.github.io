@@ -404,10 +404,26 @@ wait
 ```bash
 #!/bin/bash
 
+                                    
+LEGS=100                            
+for((rabbit=1; 4*rabbit <= 98; ++rabbit)); do
+    if (((100 - rabbit * 4) % 2 == 0)); then
+        ((possibles+=1))            
+        echo "rabbits:${rabbit}, chickens:$(((100 - rabbit * 4) / 2))"
+    fi                              
+done                                
+                                    
+echo "total possibles: $possibles" 
 
 ```
 
 30 等腰三角形
+```bash
+#!/bin/bash
+
+
+
+```
 
 31 生成进度
 
