@@ -350,7 +350,27 @@ done
 ```bash
 #!/bin/bash
 
-
+(($#<2)) && { echo -e  "uage: <dir> <suffix>  [<--all>]\n --all:包括隐藏文件，缺省:不包括隐藏文件"; exit 1; }
+ 
+DIR=$1
+SUFFIX=$2
+MODE=$3
+ 
+ 
+if [ ! -d "$DIR" -o "$MODE" != "--all" -a "$MODE" != "" ]; then
+    echo "arg error!!!!"
+    exit 1
+fi
+ 
+if [ "$MODE" = "--all" ]; then
+    for file in `ls -A $DIR/`; do
+        mv "$DIR/$file"  "${DIR}/${file%.*}.${SUFFIX#*.}"
+    done                                                                                                                              
+elif [ "$MODE" = "" ]; then
+    for file in $DIR/*; do
+        mv "$file"  "${file%.*}.${SUFFIX#*.}"
+    done
+fi
 ```
 
 27 要求将目录YYYY-MM-DD/中所有文件，移动到YYYY-MM/DD/下
