@@ -276,16 +276,16 @@ esac
 
 (($#<1)) && { echo "need 1 filepath argument"; exit; }
  
-PATH=$1
+FILE_PATH=$1
  
-if [ -h $PATH ]; then
-    echo "$PATH is a link file"
-elif [ -d $PATH ]; then
-    echo "$PATH is directory"
-elif [ -f "$PATH" ]; then
-    echo "$PATH" is rugular  file
+if [ -h $FILE_PATH ]; then
+    echo "$FILE_PATH is a link file"
+elif [ -d $FILE_PATH ]; then
+    echo "$FILE_PATH is directory"
+elif [ -f "$FILE_PATH" ]; then
+    echo "$FILE_PATH" is rugular  file
 else                                                                                            
-    echo "$PATH is other file "
+    echo "$FILE_PATH is other file "
 fi
 
 ```
@@ -462,23 +462,23 @@ echo
  
 DIR=/var/
 
-for PATH in $DIR/*; do 
-    if [ -h $PATH ]; then
-        echo "$PATH is a link file"
-    elif [ -d $PATH ]; then
-        echo "$PATH is directory"
-    elif [ -f "$PATH" ]; then
-        echo "$PATH" is rugular  file
-    elif [ -p "$PATH" ]; then                                                                                            
-        echo "$PATH is pipe file "
-    elif [ -b "$PATH" ]; then   
-        echo "$PATH is block device file "
-    elif [ -c "$PATH" ]; then   
-        echo "$PATH is character device file "
-    elif [ -S "$PATH" ]; then   
-        echo "$PATH is socket file "
+for FILE_PATH in $DIR/*; do 
+    if [ -h $FILE_PATH ]; then
+        echo "$FILE_PATH is a link file"
+    elif [ -d $FILE_PATH ]; then
+        echo "$FILE_PATH is directory"
+    elif [ -f "$FILE_PATH" ]; then
+        echo "$FILE_PATH" is rugular  file
+    elif [ -p "$FILE_PATH" ]; then                                                                                            
+        echo "$FILE_PATH is pipe file "
+    elif [ -b "$FILE_PATH" ]; then   
+        echo "$FILE_PATH is block device file "
+    elif [ -c "$FILE_PATH" ]; then   
+        echo "$FILE_PATH is character device file "
+    elif [ -S "$FILE_PATH" ]; then   
+        echo "$FILE_PATH is socket file "
     else
-        echo "$PATH is other file "
+        echo "$FILE_PATH is other file "
     fi
 done
 
@@ -504,8 +504,19 @@ done
 
 33、/etc/rc.d/rc3.d目录下分别有多个以K开头和以S开头的文件；分别读取每个文件，以K开头的输出为文件加stop，以S开头的输出为文件名加start，如K34filename stop S66filename start
 ```bash
+
 #!/bin/bash
 
+FILE_PATH=/etc/rc.d/rc3.d
+
+for file in $FILE_PATH/*; do
+    file=${file##*/}
+    if [[ "$file" =~ ^K ]]; then
+        echo "${file}stop"
+    elif  [[ "$file" =~ ^S ]]; then
+        echo "${file}start"
+    fi
+done
 
 ```
 
@@ -513,7 +524,12 @@ done
 ```bash
 #!/bin/bash
 
+FILE_PATH=/testdir
 
+mkdir -p "$FILE_PATH"
+for i in {1..10}; do
+    touch $FILE_PATH/$i$(cat  /dev/urandom  | tr -dc '[[:alpha:]]' | head -c8).html
+done
 ```
 
 
@@ -522,6 +538,12 @@ done
 ```bash
 #!/bin/bash
 
+PEACHES=1                         
+for ((i=1; i<=9; ++i)); do        
+    ((PEACHES=(PEACHES+1)*2))  
+done                              
+                                  
+echo "totle peaches is $PEACHES"
 
 ```
 
@@ -530,6 +552,21 @@ done
 ```bash
 #!/bin/bash
 
+#random 范围 0 - 32767
+declare -A VALUE=([efbaf275cd]='efbaf275cd' [4be9c40b8b]='4be9c40b8b' [44b2395c46]='44b2395c46' [f8c8873ce0]='f8c8873ce0' [b902c16c8b]='b902c16c8b' [ad865d2f63]='ad865d2f63')
+for ((i=0; i<= 32767; ++i)); do
+    HASH=`echo $i | md5sum | cut -c1-10`
+    if [ "${VALUE[$HASH]}" ]; then
+        echo "$i --> $HASH"
+    fi
+done
+
+#1000 --> ad865d2f63
+#3000 --> b902c16c8b
+#6000 --> f8c8873ce0
+#9000 --> 44b2395c46
+#12000 --> 4be9c40b8b
+#15000 --> efbaf275cd
 
 ```
 
