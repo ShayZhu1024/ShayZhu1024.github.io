@@ -773,6 +773,25 @@ n阶斐波那契数列
 ```bash
 #!/bin/bash
 
+DIR=/var/log
+declare -a arr
+
+for file in $DIR/*; do
+    if [[ $file =~ \.log$ ]]; then
+        arr[${#arr[*]}]=$file
+    fi
+done
+
+SUM=0
+
+for i in ${!arr[*]}; do
+    if ((i % 2 == 0)); then
+        ((SUM+=$(cat ${arr[i]} | wc -l)))
+    fi 
+done
+
+echo "even index file, total lines is $SUM "
+
 
 ```
 
