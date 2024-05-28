@@ -777,7 +777,21 @@ f 10
 ```bash
 #!/bin/bash
 
-
+       
+move() 
+{      
+    local A=$1  #存有盘子的柱子
+    local B=$2  #中间临时柱子
+    local C=$3  #盘子需要被移动到的目标柱子
+    local n=$4  #目前盘子数量
+       
+    ((n==1)) && { echo "$A --> $C"; return 0; }
+    move $A $C $B $[n-1]   #n-1 A移动到B 
+    echo "$A --> $C"    #A 移动到C
+    move $B $A $C $[n-1]   #n-1 B移动到C
+}      
+       
+move A B C  "$1"  # $1 初始盘子数量
 ```
 
 
