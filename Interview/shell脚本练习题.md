@@ -611,7 +611,14 @@ done
 ```bash
 #!/bin/bash
 
+LINES=0
+for file in "$@"; do
+    if [ -f "$file" ]; then
+        ((LINES+=$(cat "$file" | wc -l))) 
+    fi
+done
 
+echo "total lines is $LINES"
 ```
 
 
@@ -619,7 +626,20 @@ done
 ```bash
 #!/bin/bash
 
+MIN=$1
+MAX=$2
 
+for i ; do
+    if ((MIN > $1)); then
+        MIN=$1
+    fi
+    if ((MAX < $1)); then
+        MAX=$1
+    fi
+    shift
+done
+
+echo "MAX : $MAX, MIN: $MIN"
 ```
 
 
