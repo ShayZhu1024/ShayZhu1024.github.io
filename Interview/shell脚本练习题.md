@@ -306,10 +306,22 @@ fi
 
 23 面试题，计算1+2+3+...+100 的结果
 ```bash
+#!/bin/bash
 
+(($#<1)) && { echo "need 1 positive integer arg"; exit; }
+
+NUM=$1
+
+SUM=$(echo `seq -s+ 1  $1 ` | bc)
+
+echo "1+2+3...$NUM = $SUM"
 ```
 
 24 100以内的奇数之和
+```bash
+#!/bin/bash
+
+```
 
 25  九九乘法表
 
