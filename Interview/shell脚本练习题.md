@@ -421,11 +421,24 @@ echo "total possibles: $possibles"
 ```bash
 #!/bin/bash
 
-
+(($#<1)) && { echo "need 1 arg"; exit; }
+LEVEL=$1 
+for((i=1; i <= LEVEL; ++i)); do
+    for ((j=1; j <= LEVEL - i; ++j)); do
+        echo -n " "
+    done 
+    for ((k=1; k<=i; ++k )); do
+        echo -n "* "
+    done 
+    echo                                                                                                       
+done 
 
 ```
 
 31 生成进度
+```bash
+
+```
 
 32、判断/var/目录下所有文件的类型
 
