@@ -574,15 +574,35 @@ done
 41、每隔3秒钟到系统上获取已经登录的用户的信息；如果发现用户hacker登录，则将登录时间和主机记录于日志/var/log/login.log中,并退出脚本
 ```bash
 #!/bin/bash
+NAME=hacker
+LOG_PATH=/var/log/login.log
 
-
+while true; do
+    if who | awk '{print $1}' | egrep "$NAME" &>/dev/null; then
+        who | egrep "^hacker"  >> $LOG_PATH
+        break
+    fi
+    sleep 3
+done
 ```
 
 
 42、随机生成10以内的数字，实现猜字游戏，提示比较大或小，相等则退出
 ```bash
 #!/bin/bash
+NUM=$((RANDOM % 10))
 
+while true; do
+    read -r -p "your number: " GUESS_NUM
+    if ((GUESS_NUM == NUM)); then
+        echo "congratulation!!!! The num is $NUM"
+        break
+    elif ((GUESS_NUM > NUM)); then
+        echo "sorry! your num is greater"
+    elif ((GUESS_NUM < NUM)); then
+        echo "sorry! your num is lower"
+    fi
+done
 
 ```
 
