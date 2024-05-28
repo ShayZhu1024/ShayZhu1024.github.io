@@ -647,7 +647,10 @@ echo "MAX : $MAX, MIN: $MIN"
 ```bash
 #!/bin/bash
 
-
+os_version()
+{
+    sed -rn '/^PRETTY_NAME="/s/^.*"(.*)"/\1/p' /etc/os-release
+}
 ```
 
 
@@ -655,6 +658,10 @@ echo "MAX : $MAX, MIN: $MIN"
 ```bash
 #!/bin/bash
 
+eth0_ip()
+{
+    ifconfig eth0 | awk 'NR==2{print $2}'
+}
 
 ```
 
@@ -664,6 +671,44 @@ echo "MAX : $MAX, MIN: $MIN"
 #!/bin/bash
 
 
+#color output #1:color  #2:content
+color_output() 
+{
+    if (($# == 0)); then
+        return 1
+    fi
+    case $1 in
+        red)
+            echo -ne "\e[1;31m$2\e[0m"
+            ;;
+        green)
+            echo -ne "\e[1;32m$2\e[0m"
+            ;;
+        yellow)
+            echo -ne "\e[1;33m$2\e[0m"
+            ;;
+        *)
+            echo -ne "\e[1;37m$2\e[0m"
+            ;;
+    esac
+}
+
+
+#print message $1:message
+print_message() {
+
+    if (($? == 0)); then
+        local space=$((80-${#1}))
+        echo -n  "$1"
+        printf "%${space}s\n"  "$(color_output green "[ok]")"
+    else 
+        local space=$((80-${#1}))
+        echo -n  "$1"
+        printf "%${space}s\n"  "$(color_output red "[failed]")"
+        exit 1
+    fi
+}
+
 ```
 
 
@@ -671,7 +716,10 @@ echo "MAX : $MAX, MIN: $MIN"
 ```bash
 #!/bin/bash
 
-
+check_position_arg() 
+{
+    (($# < 1 )) && { echo "error! no position args!"; return 1; }
+}
 ```
 
 
@@ -679,7 +727,10 @@ echo "MAX : $MAX, MIN: $MIN"
 ```bash
 #!/bin/bash
 
-
+max_in_two()
+{
+    (($1 > $2)) && echo "$1" || echo "$2"
+}
 ```
 
 
