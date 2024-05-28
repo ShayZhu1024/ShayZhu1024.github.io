@@ -230,11 +230,65 @@ EOF
 
 17、编写脚本 createuser.sh，实现如下功能：使用一个用户名做为参数，如果指定参数的用户存在，就显示其存在，否则添加之。并设置初始密码为123456，显示添加的用户的id号等信息，在此新用户第一次登录时，会提示用户立即改密码，如果没有参数，就提示：请输入用户名
 
+```bash
+#!/bin/bash
+
+(($#<1)) && { echo "need a user name as a arg"; exit; }
+                                     
+NAME=$1                                 
+                                        
+if getent passwd $NAME &>/dev/null; then
+    echo "$NAME is exist!!!"            
+else                                    
+    useradd  "$NAME"                    
+    echo "$NAME:123456" | chpasswd   
+    passwd --expire $NAME &>/dev/null                                                           
+    id $NAME                            
+fi 
+```
 
 18、编写脚本 yesorno.sh，提示用户输入yes或no,并判断用户输入的是yes还是no,或是其它信息
 
-19、编写脚本 filetype.sh，判断用户输入文件路径，显示其文件类型（普通，目录，链接，其它文件类型）
+```bash
+#!/bin/bash
 
+(($# < 1)) && { echo "need 1 arg"; exit 1; }
+ 
+INPUT=`tr '[[:upper:]]' '[[:lower:]]' <<< "$1" `
+                                                                                                
+case $INPUT in
+    yes|y)
+        echo "user input is yes!"
+        ;;  
+    n|no)
+        echo "user input is no!"
+        ;;  
+    *)  
+        echo "user input is other"
+        ;;  
+esac
+
+```
+
+19、编写脚本 filetype.sh，判断用户输入文件路径，显示其文件类型（普通，目录，链接，其它文件类型）
+```bash
+#!/bin/bash
+
+(($#<1)) && { echo "need 1 filepath argument"; exit; }
+ 
+PATH=$1
+ 
+if [ -h $PATH ]; then
+    echo "$PATH is a link file"
+elif [ -d $PATH ]; then
+    echo "$PATH is directory"
+elif [ -f "$PATH" ]; then
+    echo "$PATH" is rugular  file
+else                                                                                            
+    echo "$PATH is other file "
+fi
+
+```
 
 20、编写脚本 checkint.sh，判断用户输入的参数是否为正整数
 
