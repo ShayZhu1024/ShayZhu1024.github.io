@@ -321,11 +321,37 @@ echo "1+2+3...$NUM = $SUM"
 ```bash
 #!/bin/bash
 
+(($#<1)) && { echo "need 1 positive integer arg"; exit; }
+
+NUM=$1
+SUM=0
+for ((i=1; i < $NUM; ++i)); do
+    if ((i%2==1)); then
+        ((SUM+=i))
+    fi
+done
+
+echo "odd sum between $NUM and 1 ： $SUM"
 ```
 
 25  九九乘法表
+```bash
+#!/bin/bash
+
+for ((row=1; row<=9; ++row)); do
+    for ((column=1;column<=row;++column)); do
+        printf "%-12s"  "${column} x ${row} = $((column*row))"                                                                        
+    done               
+    echo               
+done  
+```
 
 26 将指定目录下的文件所有文件的后缀改名为 bak 后缀
+```bash
+#!/bin/bash
+
+
+```
 
 27 要求将目录YYYY-MM-DD/中所有文件，移动到YYYY-MM/DD/下
 
