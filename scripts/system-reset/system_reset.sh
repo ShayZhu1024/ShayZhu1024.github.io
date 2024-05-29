@@ -297,7 +297,7 @@ config_ubuntu_vim()
 ubuntu_install_common_app() 
 {
     apt purge ufw lxd lxd-client lxcfs liblxc-common  -y
-    apt install bash-completion  nload  iptraf-ng dstat  nethogs sysstat iftop iotop net-tools  -y
+    apt install bash-completion  nload  lrzsz iptraf-ng dstat  nethogs sysstat iftop iotop net-tools  -y
 
     print_message "commonApp installed"
 
