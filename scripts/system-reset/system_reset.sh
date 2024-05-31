@@ -380,6 +380,7 @@ reset_main()
         config_rocky_network
         hostnamectl set-hostname "$ROCKY_HOSTNAME"
         print_message "set-hostname"
+        PS1='\[\e[1;31m\][\t \u@\h \W]\[\e[0m\]$ '
     elif [[ $ID =~ ubuntu ]]; then
         config_apt_source
         config_ubuntu_vim
@@ -392,6 +393,7 @@ reset_main()
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
         print_message "set-hostname"
         sed -ri "/^127.0.1.1/s/^.*$/127.0.0.1 ${UBUNTU_HOSTNAME}/" /etc/hosts
+        PS1='\[\e[1;31m\][\t \u@\h \W]\[\e[0m\]$ '
     fi
     echo "reboot....."
     reboot
