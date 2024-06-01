@@ -14,7 +14,7 @@ sed -ri '/^\t*allow-query/s/^/\/\//'   /etc/named.conf
 sed -ri  's/(^\t*dnssec-enable ).*$/\1 no;/'   /etc/named.conf
 sed -ri 's/(^\t*dnssec-validation ).*$/\1 no;/'   /etc/named.conf
 sed  -ri '/^\t*recursion/a \\tallow-transfer {none;};' /etc/named.conf
-sed  -ri '/^\t*recursion/a \\minimal-responses yes;' /etc/named.conf
+sed  -ri '/^\t*recursion/a \\tminimal-responses yes;' /etc/named.conf
 
 cat >> /etc/named.rfc1912.zones <<EOF
 zone "$DOMAIN" IN {
