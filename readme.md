@@ -68,7 +68,7 @@
 ###### [18.系统启动和内核管理](./Interview/系统启动和内核管理.md)
 ###### [19.加密和安全](./Interview/加密和安全.md)
 ###### [20.DNS服务](./Interview/DNS.md)
-###### [21.DNS服务](./Interview/Linux防火墙.md)
+###### [21.Linux防火墙](./Interview/Linux防火墙.md)
 
 
 
