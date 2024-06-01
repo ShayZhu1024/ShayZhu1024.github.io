@@ -43,6 +43,7 @@
 ###### [配置yum服务器](./scripts/config-yum-server/rsync-local-repo.sh)
 ###### [批量分发ssh-key](./scripts/ssh-key-copy/one2more-ssh-key-copy.sh)
 ###### [互相批量分发ssh-key](./scripts/ssh-key-copy/more2more-ssh-key-copy.sh)
+###### [DNS服务器](./scripts/dns-server/dns-server.sh)
 
 
 ## Linux练习题 
