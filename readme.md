@@ -35,19 +35,7 @@
 ###### [22.DNS服务](./LinuxBasics/22.DNS.md)
 ###### [23.Linux防火墙](./LinuxBasics/23.Linux防火墙.md)
 
-
-## Linux 脚本
-###### [RockyLinux和Ubuntu初始化脚本](./scripts/system-reset/system_reset.sh)
-###### [nginx源码编译安装脚本](./scripts/nginx-install/nginx_install.sh)
-###### [配置ntp服务器](./scripts/config-ntp-server/config-ntp-server.sh)
-###### [配置yum服务器](./scripts/config-yum-server/config-yum-server.sh)
-###### [配置yum服务器](./scripts/config-yum-server/rsync-local-repo.sh)
-###### [批量分发ssh-key](./scripts/ssh-key-copy/one2more-ssh-key-copy.sh)
-###### [互相批量分发ssh-key](./scripts/ssh-key-copy/more2more-ssh-key-copy.sh)
-###### [DNS服务器](./scripts/dns-server/dns-server.sh)
-
-
-## Linux练习题 
+### Linux练习题 
 ###### [1.冯诺依曼体系中计算机有哪些组件](./Interview/冯诺依曼体系中计算机有哪些组件.md)
 ###### [2.Linux哲学思想(法则,原则)是什么?](./Interview/Linux哲学思想是什么.md)
 ###### [3.提示空间满 No space left on device，但 df 可以看到空间很多，为什么](./Interview/提示空间满Nospaceleftondevice但df可以看到空间很多,为什么.md)
@@ -69,6 +57,36 @@
 ###### [19.加密和安全](./Interview/加密和安全.md)
 ###### [20.DNS服务](./Interview/DNS.md)
 ###### [21.Linux防火墙](./Interview/Linux防火墙.md)
+
+### Linux 脚本
+###### [RockyLinux和Ubuntu初始化脚本](./scripts/system-reset/system_reset.sh)
+###### [nginx源码编译安装脚本](./scripts/nginx-install/nginx_install.sh)
+###### [配置ntp服务器](./scripts/config-ntp-server/config-ntp-server.sh)
+###### [配置yum服务器](./scripts/config-yum-server/config-yum-server.sh)
+###### [配置yum服务器](./scripts/config-yum-server/rsync-local-repo.sh)
+###### [批量分发ssh-key](./scripts/ssh-key-copy/one2more-ssh-key-copy.sh)
+###### [互相批量分发ssh-key](./scripts/ssh-key-copy/more2more-ssh-key-copy.sh)
+###### [DNS服务器](./scripts/dns-server/dns-server.sh)
+
+
+## MySQL
+###### [1.MySQL安装和基本使用](./MySQL/MySQL/1.MySQL安装和基本使用.md)
+
+
+### MySQL练习题
+
+
+### MySQL相关脚本
+
+
+
+
+
+
+
+
+
+
 
 
 
