@@ -4,8 +4,8 @@
 LOCAL_REPO_IP=10.0.0.3
 HOST_IP="10.0.0.3"
 NTP_SERVER_IP=ntp.aliyun.com
-ROCKY_HOSTNAME=rocky8-$(echo $HOST_IP | awk -F. '{print $4}')
-UBUNTU_HOSTNAME=ubuntu20-$(echo $HOST_IP | awk -F. '{print $4}')
+ROCKY_HOSTNAME=rocky-$(echo $HOST_IP | awk -F. '{print $4}')
+UBUNTU_HOSTNAME=ubuntu-$(echo $HOST_IP | awk -F. '{print $4}')
 QQ_MAIL_FROM=xxxxx@qq.com
 AUTH_PASSWORD=xxxxx
 TEST_MAIL=xxxx
@@ -221,6 +221,14 @@ EOF
     print_message "modify network interface"
 }
 
+
+set_ps1_rocky()
+{
+    cat > /etc/profile.d/PS1.sh <<EOF
+PS1='\[\e[1;31m\][\t \u@\h \W]\[\e[0m\]$ '
+EOF
+}
+
 #############rockyLinux config end##################
 
 
@@ -362,6 +370,13 @@ EOF
     print_message "ubuntu mail config"
 }
 
+set_ps1_ubuntu()
+{
+    cat >> /root/.bashrc <<EOF
+PS1='\[\e[1;31m\][\t \u@\h \W]\[\e[0m\]$ '
+EOF
+}
+
 #############ubuntu config end######################
 
 reset_main() 
@@ -380,7 +395,7 @@ reset_main()
         config_rocky_network
         hostnamectl set-hostname "$ROCKY_HOSTNAME"
         print_message "set-hostname"
-        PS1='\[\e[1;31m\][\t \u@\h \W]\[\e[0m\]$ '
+        set_ps1_rocky
     elif [[ $ID =~ ubuntu ]]; then
         config_apt_source
         config_ubuntu_vim
@@ -393,7 +408,7 @@ reset_main()
         hostnamectl set-hostname "$UBUNTU_HOSTNAME"
         print_message "set-hostname"
         sed -ri "/^127.0.1.1/s/^.*$/127.0.0.1 ${UBUNTU_HOSTNAME}/" /etc/hosts
-        PS1='\[\e[1;31m\][\t \u@\h \W]\[\e[0m\]$ '
+        set_ps1_ubuntu
     fi
     echo "reboot....."
     reboot
