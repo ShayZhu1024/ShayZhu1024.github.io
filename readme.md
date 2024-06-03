@@ -77,7 +77,8 @@
 
 
 ### MySQL相关脚本
-###### [mysql通用二进制包安装]()
+###### [mysql通用二进制包安装](./MySQL/Scripts/binary_mysql_install.sh)
+###### [mysql多实例通用二进制包安装](./MySQL/Scripts/multi_binary_mysql_install.sh)
 
 
 
