@@ -71,9 +71,11 @@
 
 ## MySQL
 ###### [1.MySQL安装和基本使用](./MySQL/MySQL/1.MySQL安装和基本使用.md)
+###### [2.SQL语言](./MySQL/MySQL/2.SQL语言.md)
 
 
 ### MySQL练习题
+###### [2.SQL语言](./MySQL/Exercises/2.sql语言.md)
 
 
 ### MySQL相关脚本
