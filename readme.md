@@ -77,6 +77,7 @@
 
 ### MySQL练习题
 ###### [2.SQL语言](./MySQL/Exercises/2.sql语言.md)
+###### [3.MySQL基本管理](./MySQL/Exercises/3.MySQL基本管理)
 
 
 ### MySQL相关脚本
