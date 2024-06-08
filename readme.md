@@ -75,6 +75,9 @@
 - [1.MySQL安装和基本使用](./MySQL/MySQL/1.MySQL安装和基本使用.md)
 - [2.SQL语言](./MySQL/MySQL/2.SQL语言.md)
 - [3.MySQL基本管理](./MySQL/MySQL/3.MySQL基本管理.md)
+- [4.MySQL性能优化和日志管理](./MySQL/MySQL/4.MySQL性能优化和日志管理.md)
+- [5.MySQL备份还原和主从复制集群](./MySQL/MySQL/5.MySQL备份还原和主从复制集群.md)
+- [6.MySQL读写分离和高可用集群](./MySQL/MySQL/6.MySQL读写分离和高可用集群.md)
 
 
 ### MySQL练习题
