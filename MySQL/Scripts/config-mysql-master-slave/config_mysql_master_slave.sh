@@ -25,7 +25,7 @@ mysql -uroot -e "INSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so'
 
 cat >> /etc/my.cnf <<EOF
 rpl_semi_sync_master_enabled
-rpl_semi_sync_master_timeout=3000
+rpl_semi_sync_master_timeout=10000
 EOF
 
 systemctl restart  mysqld

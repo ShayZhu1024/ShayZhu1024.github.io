@@ -21,9 +21,9 @@ replica_parallel_workers=2
 EOF
 
 systemctl enable --now mysqld
-mysql -uroot -e "INSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so'"
+mysql -uroot -e "INSTALL PLUGIN rpl_semi_sync_slave SONAME 'semisync_slave.so'"
 
-echo "rpl_semi_sync_master_enabled" >> /etc/my.cnf
+echo "rpl_semi_sync_slave_enabled" >> /etc/my.cnf
 
 systemctl restart  mysqld
 
