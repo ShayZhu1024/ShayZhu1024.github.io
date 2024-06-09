@@ -9,10 +9,6 @@ set -e
 #mycat 端口和数据库设置可以在  ./schema.xml 和 ./server.xml 修改
 
 
-#MASTER=10.0.0.8
-#mysql -uroot  -h $MASTER -e "create user root@'10.0.0.%' identified by '123456' "
-#mysql -uroot  -h $MASTER -e "grant all on *.* to root@'10.0.0.%'"
-
 MYCAT=Mycat-server-1.6.7.6-release-20210303094759-linux
 DIR=/apps/
 yum install -y java
