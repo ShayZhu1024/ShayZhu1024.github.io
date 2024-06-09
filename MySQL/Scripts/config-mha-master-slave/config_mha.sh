@@ -16,11 +16,15 @@ SLAVE2=10.0.0.7
 
 yum install -y ./mha4mysql-manager-0.58-0.el7.centos.noarch.rpm   ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm 
 
-scp -o StrictHostKeyChecking=no  ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm  $SLAVE1
-scp -o StrictHostKeyChecking=no  ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm  $SLAVE2
+scp -o StrictHostKeyChecking=no  ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm  ${SLAVE1}:
+scp -o StrictHostKeyChecking=no  ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm  ${SLAVE2}:
+scp -o StrictHostKeyChecking=no  ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm  ${MASTER}:
 
 ssh -o StrictHostKeyChecking=no $SLAVE1  "yum install -y ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm"
 ssh -o StrictHostKeyChecking=no $SLAVE2  "yum install -y ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm"
+ssh -o StrictHostKeyChecking=no $MASTER  "yum install -y ./mha4mysql-node-0.58-0.el7.centos.noarch.rpm"
+
+mkdir -p /etc/mastermha/ 
 
 cat > /etc/mastermha/app1.cnf <<EOF
 [server default]
@@ -29,7 +33,7 @@ check_repl_delay=0
 manager_log=/data/mastermha/app1/manager.log
 manager_workdir=/data/mastermha/app1
 master_binlog_dir=/var/lib/mysql/
-master_ip_failover_script=/usr/local/bin/master_ip_failover.sh
+master_ip_failover_script=/usr/local/bin/master_ip_failover
 password=123456
 ping_interval=1
 remote_workdir=/data/mastermha/app1/
@@ -80,7 +84,7 @@ ssh -o StrictHostKeyChecking=no  $MASTER  "ifconfig eth0:1 10.0.0.250/24"
 #检查
 masterha_check_ssh --conf=/etc/mastermha/app1.cnf && echo "check success!!" || echo "check failed!"
 masterha_check_repl --conf=/etc/mastermha/app1.cnf && echo "check success!!" || echo "check failed!"
-masterha_check_status --conf=/etc/mastermha/app1.cnf && echo "check success!!" || echo "check failed!"
+masterha_check_status --conf=/etc/mastermha/app1.cnf 
 
 #启动
-masterha_manager --conf=/etc/mastermha/app1.cnf --remove_dead_master_conf --ignore_last_failover
+#masterha_manager --conf=/etc/mastermha/app1.cnf --remove_dead_master_conf --ignore_last_failover 
