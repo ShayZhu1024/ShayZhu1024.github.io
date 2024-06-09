@@ -88,6 +88,11 @@
 ### MySQL相关脚本
 - [mysql通用二进制包安装](./MySQL/Scripts/binary_mysql_install.sh)
 - [mysql多实例通用二进制包安装](./MySQL/Scripts/muti-install/multi_binary_mysql_install.sh)
+- [mysql主从配置](./MySQL/Scripts/config-mysql-master-slave/config_mysql_master_slave.sh)
+- [mysql-MyCat配置](./MySQL/Scripts/config_mycat/config_mycat.sh)
+- [mysql-MHA配置](./MySQL/Scripts/config-mha-master-slave/config_mha.sh)
+
+
 
 
 
