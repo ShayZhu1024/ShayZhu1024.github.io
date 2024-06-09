@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mycat:server SYSTEM "server.dtd">
+<mycat:server xmlns:mycat="http://io.mycat/">
+	<system>
+	<property name="nonePasswordLogin">0</property>
+	<property name="ignoreUnknownCommand">0</property>
+	<property name="useHandshakeV10">1</property>
+    <property name="removeGraveAccent">1</property>
+	<property name="useSqlStat">0</property>  <!-- 1为开启实时统计、0为关闭 -->
+	<property name="useGlobleTableCheck">0</property>  <!-- 1为开启全加班一致性检测、0为关闭 -->
+	<property name="sqlExecuteTimeout">300</property>  <!-- SQL 执行超时 单位:秒-->
+	<property name="sequenceHandlerType">1</property>
+	<property name="sequnceHandlerPattern">(?:(\s*next\s+value\s+for\s*MYCATSEQ_(\w+))(,|\)|\s)*)+</property>
+	<property name="subqueryRelationshipCheck">false</property> <!-- 子查询中存在关联查询的情况下,检查关联字段中是否有分片字段 .默认 false -->
+	<property name="sequenceHanlderClass">io.mycat.route.sequence.handler.HttpIncrSequenceHandler</property>
+	<property name="processorBufferPoolType">0</property>
+	<property name="serverPort">3306</property>
+	<property name="handleDistributedTransactions">0</property>
+	<property name="useOffHeapForMerge">0</property>
+    <property name="memoryPageSize">64k</property>
+	<property name="spillsFileBufferSize">1k</property>
+	<property name="useStreamOutput">0</property>
+	<property name="systemReserveMemorySize">384m</property>
+	<property name="useZKSwitch">false</property>
+	<property name="strictTxIsolation">false</property>
+	<property name="parallExecute">0</property>
+	<property name="serverBacklog">2048</property>
+	</system>
+	<user name="root" defaultAccount="true">
+		<property name="password">123456</property>
+		<property name="schemas">hellodb</property>
+		<property name="defaultSchema">hellodb</property>
+	</user>
+</mycat:server>
