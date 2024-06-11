@@ -98,12 +98,8 @@
 
 ## PostgreSQL
 - [1.PostgreSQL安装和基本使用](./PostgreSQL/PostgreSQL/1.PostgreSQL安装和基本使用.md)
+- [2.PostgreSQL备份和恢复](./PostgreSQL/PostgreSQL/2.PostgreSQL备份和恢复.md)
 
-
-### PostgreSQL练习题
-
-
-### PostgreSQL相关脚本
 
 
 
