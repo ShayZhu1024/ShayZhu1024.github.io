@@ -102,7 +102,9 @@
 
 
 
+### PostgreSQL脚本
 
+- [1.源码安装postgresql](./PostgreSQL/scripts/install_postgresql.sh)
 
 
 
