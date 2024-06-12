@@ -107,5 +107,12 @@
 - [1.源码安装postgresql](./PostgreSQL/scripts/install_postgresql.sh)
 
 
+## OpenVPN
+- [1.openvpn安装和配置](./OpenVPN/1.openvpn安装和配置.md)
+
+### OpenVPN 脚本
+
+- [1.openVPN安装](./OpenVPN/install_config_openvpn.sh)
+
 
 
