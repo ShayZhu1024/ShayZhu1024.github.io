@@ -1,12 +1,12 @@
 #!/bin/bash
 
 
-HOST_IP="10.0.0.3"
-NTP_SERVER_IP=ntp.aliyun.com
+HOST_IP="10.0.0.200"
+NTP_SERVER_IP=10.0.0.4
 UBUNTU_HOSTNAME=ubuntu-$(echo $HOST_IP | awk -F. '{print $4}')
-QQ_MAIL_FROM=xxxxx@qq.com
-AUTH_PASSWORD=xxxxx
-TEST_MAIL=xxxx
+QQ_MAIL_FROM=xxxxxxx@qq.com
+AUTH_PASSWORD=xxxxxxxx
+TEST_MAIL=xxxxxxxx@126.com
 
 
 #color output #1:color  #2:content
@@ -162,30 +162,16 @@ EOF
 
 config_ntp() 
 {
-    if [[ $ID =~ rhel|centos|rocky ]]; then
-        rpm -q chrony &>/dev/null
-        if [ ! $? -eq 0 ]; then
-            yum install -y chrony
-        fi
-        sed -ri 's/^(pool.*)$/#\1/' /etc/chrony.conf
-cat >> /etc/chrony.conf <<EOF
-server $NTP_SERVER_IP  iburst
-EOF
-        systemctl restart chronyd.service
-    elif [[ $ID =~ ubuntu ]]; then
-        dpkg -l chrony &>/dev/null
-        if [ ! $? -eq 0 ]; then
-            apt update
-            apt install -y chrony
-        fi
-        sed -ri 's/^(pool.*)$/#\1/' /etc/chrony/chrony.conf
+    dpkg -l chrony &>/dev/null
+    if [ ! $? -eq 0 ]; then
+        apt update
+        apt install -y chrony
+    fi
+    sed -ri 's/^(pool.*)$/#\1/' /etc/chrony/chrony.conf
 cat >> /etc/chrony/chrony.conf <<EOF
 server $NTP_SERVER_IP  iburst
 EOF
-        systemctl restart chronyd.service
-    else
-          echo "系统版本不支持"
-    fi
+    systemctl restart chronyd.service
     print_message "NTP config" 
 }
 
