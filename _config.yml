@@ -1,2 +1,6 @@
-theme: jekyll-theme-primer
+remote_theme: pages-themes/primer@v0.6.0
+plugins: 
+  - jekyll-remote-theme 
 title: linuxcache
+description: The Linux System Administration Notes
+google_analytics: G-4JWFPZDR3H
