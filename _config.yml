@@ -1,5 +1,5 @@
 remote_theme: pages-themes/primer@v0.6.0
 plugins: 
   - jekyll-remote-theme 
-title: linuxcache
+title: CodeMe
 description: The Linux System Administration Notes
