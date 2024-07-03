@@ -131,6 +131,7 @@
 
 - [1.web服务相关概念](./nginx/1.web服务相关概念.md)
 - [2.web相关工具](./nginx/2.web相关工具.md)
+- [3.nginx架构和安装](./nginx/3.nginx架构和安装.md)
 
 
 
