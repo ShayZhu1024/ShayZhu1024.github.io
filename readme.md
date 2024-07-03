@@ -136,7 +136,7 @@
 - [5.nginx的常见模块](./nginx/5.nginx的常见模块.md)
   - [5.1.nginx的变量](./nginx/5.1.nginx的变量.md)
   - [5.2.nginx自定义访问日志](./nginx/5.2.nginx自定义访问日志.md)
-  - [5.3.nginx配置https](./nginx/5.3.nginx配置https.md)
+  - [5.3.nginx的https-rewrite-防盗链](./nginx/5.3.nginx的https-rewrite-防盗链.md)
 - [6.nginx的第三方模块](./nginx/6.nginx的第三方模块.md)
 - [7.nginx的反向代理](./nginx/7.nginx的反向代理.md)
 - [8.nginx的二次开发版](./nginx/8.nginx的二次开发版.md)
