@@ -132,6 +132,7 @@
 - [1.web服务相关概念](./nginx/1.web服务相关概念.md)
 - [2.web相关工具](./nginx/2.web相关工具.md)
 - [3.nginx架构和安装](./nginx/3.nginx架构和安装.md)
+- [4.nginx的核心模块](./nginx/4.nginx的核心模块.md)
 
 #### nginx脚本
 
