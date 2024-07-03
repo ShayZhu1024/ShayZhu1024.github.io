@@ -139,7 +139,6 @@
   - [5.3.nginx的https-rewrite-防盗链](./nginx/5.3.nginx的https-rewrite-防盗链.md)
 - [6.nginx的第三方模块](./nginx/6.nginx的第三方模块.md)
 - [7.nginx的反向代理](./nginx/7.nginx的反向代理.md)
-- [8.nginx的二次开发版](./nginx/8.nginx的二次开发版.md)
 
 #### nginx脚本
 
