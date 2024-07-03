@@ -144,6 +144,10 @@
 
 - [1.nginx编译安装脚本](./nginx/scripts/install_nginx.sh)
 
+#### nginx 练习题
+
+- [nginx 练习题](./nginx/nginx_exercise.md)
+
 
 
 
