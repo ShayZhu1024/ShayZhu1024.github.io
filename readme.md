@@ -134,6 +134,9 @@
 - [3.nginx架构和安装](./nginx/3.nginx架构和安装.md)
 - [4.nginx的核心模块](./nginx/4.nginx的核心模块.md)
 - [5.nginx的常见模块](./nginx/5.nginx的常见模块.md)
+- [6.nginx的第三方模块](./nginx/6.nginx的第三方模块.md)
+- [7.nginx的反向代理](./nginx/7.nginx的反向代理.md)
+- [8.nginx的二次开发版](./nginx/8.nginx的二次开发版.md)
 
 #### nginx脚本
 
