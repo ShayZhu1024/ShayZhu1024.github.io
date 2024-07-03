@@ -133,6 +133,7 @@
 - [2.web相关工具](./nginx/2.web相关工具.md)
 - [3.nginx架构和安装](./nginx/3.nginx架构和安装.md)
 - [4.nginx的核心模块](./nginx/4.nginx的核心模块.md)
+- [5.nginx的常见模块](./nginx/5.nginx的常见模块.md)
 
 #### nginx脚本
 
