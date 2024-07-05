@@ -154,6 +154,11 @@
 - [1.tomcat基础](./tomcat/1.tomcat基础.md)
 - [2.tomcat集群会话保持](./tomcat/2.tomcat集群会话保持.md)
 - [3.java应用性能优化](./tomcat/3.java应用性能优化.md)
+- [4.maven编译java源码](./tomcat/4.maven编译java源码.md)
+- [5.Nexus搭建和使用](./tomcat/5.Nexus搭建和使用.md)
+
+#### 练习题
+- [1.相关练习题](./tomcat/1.相关练习题.md)
 
 #### tomcat相关脚本
 
