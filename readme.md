@@ -149,6 +149,16 @@
 - [nginx 练习题](./nginx/nginx_exercise.md)
 
 
+## tomcat 
+
+- [1.tomcat基础](./tomcat/1.tomcat基础.md)
+
+#### tomcat相关脚本
+
+- [1.OracleJDK安装脚本](./tomcat/scripts/install_jdk.sh)
+- [2.tomcat安装脚本](./tomcat/scripts/install_tomcat.sh)
+
+
 
 
 
