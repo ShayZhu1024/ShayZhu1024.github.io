@@ -159,6 +159,17 @@
 - [2.tomcat安装脚本](./tomcat/scripts/install_tomcat.sh)
 
 
+## ansible
+
+- [1.ansible安装和常见模块](./ansible/1.ansible安装和常见模块.md)
+
+
+## zabbix
+
+- [1.zabbix介绍和部署](./zabbix/1.zabbix介绍和部署.md)
+
+
+
 
 
 
