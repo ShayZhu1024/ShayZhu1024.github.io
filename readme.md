@@ -153,6 +153,7 @@
 
 - [1.tomcat基础](./tomcat/1.tomcat基础.md)
 - [2.tomcat集群会话保持](./tomcat/2.tomcat集群会话保持.md)
+- [3.java应用性能优化](./tomcat/3.java应用性能优化.md)
 
 #### tomcat相关脚本
 
