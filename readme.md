@@ -152,6 +152,7 @@
 ## tomcat 
 
 - [1.tomcat基础](./tomcat/1.tomcat基础.md)
+- [2.tomcat负载均衡和会话保持](./tomcat/2.tomcat负载均衡和会话保持.md)
 
 #### tomcat相关脚本
 
