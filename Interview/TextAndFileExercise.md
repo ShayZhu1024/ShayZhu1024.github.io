@@ -308,6 +308,13 @@ END {
     print i "|" minbegin[i] "|" maxend[i] "|" counts[i] "|";
   }
 }' awktest.txt
+
+
+
+awk -F"|" -v OFS="|" \
+'NR!=1{inode[$1]+=$4;min[$1]=min[$1]==0?$2:min[$1];min[$1]=min[$1]>$2?$2:min[$1];\
+max[$1]=max[$1]==0?$3:max[$1];max[$1]=max[$1]<$3?$3:max[$1]}\
+END{for(i in inode)print i,min[i],max[i],inode[i]}'  test2.txt
 ```
 
 ### 文件查找
