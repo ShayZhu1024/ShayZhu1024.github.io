@@ -216,7 +216,7 @@ cat >> /etc/vimrc <<EOF
         call setline(1, "\#!/bin/bash")
         call setline(2, "################################")
         call setline(3, "# Author: ShayZhu")                
-        call setline(4, "# Contact: shayzhu@126.com")       
+        call setline(4, "# Contact: shayzhu@hotmail.com")       
         call setline(5, "# Version: 1.0.0")                 
         call setline(6, '# Date: ' . strftime('%Y-%m-%d'))
         call setline(7, '# Description:')                   
